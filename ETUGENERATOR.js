@@ -4282,7 +4282,7 @@ for (var i = 0; i < nbEtu; i += 1) {
         ' ' + noms[(Math.random() * nameNb)|0] +
         '", "' + ((Math.random() * 12)|0 + 18) +
         '", "' + (Math.random() > 0.5 ? 'M' : 'F') + 
-        '", "' + (i % nbIut) + 
+        '", "' + ((i % nbIut) + 1) + 
         '");'
     );
 }
