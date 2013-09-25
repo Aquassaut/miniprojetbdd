@@ -1,0 +1,12 @@
+insert into epreuve (intitule) values ("Challenge Rubick's Cube");
+insert into epreuve (intitule) values ("Enigmes Mathématiques");
+insert into epreuve (intitule) values ("Basket-ball en Caddie");
+insert into epreuve (intitule) values ("Course de Luge sur Gravier");
+insert into epreuve (intitule) values ("Scrabble En Allemand");
+insert into epreuve (intitule) values ("Course De Vaisselle Du RU");
+insert into epreuve (intitule) values ("Golf De La Main Gauche");
+insert into epreuve (intitule) values ("Perl En Layout Dvorak");
+insert into epreuve (intitule) values ("Gobage De Tic-Tacs");
+insert into epreuve (intitule) values ("Géométrie En Coca Light Et Mentos");
+insert into epreuve (intitule) values ("Ab'Dominos");
+insert into epreuve (intitule) values ("Match De Foot'Bulle De Savon");
