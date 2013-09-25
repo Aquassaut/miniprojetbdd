@@ -1,4 +1,4 @@
-a =  [
+var iut =  [
     [
         'Colmar',
         '34 RUE GRILLENBREIT 68008 COLMAR CEDEX',
@@ -553,10 +553,18 @@ a =  [
     ]
 ];
 
-for (var i = 0; i < a.length; i++) {
+if (typeof process.argv[2] === undefined) {
+    console.error('USAGE : ' + process.argv[0] + ' ' + process.argv[1] + ' <number of IUTs>');
+    return 1;
+}
+
+var iutNb = parseInt(process.argv[2], 10);
+
+for (var i = 0; i < iutNb; i++) {
+    var current = (Math.random() * iut.length)|0;
     console.log(
         'insert into iut (nomIut, adresse, nbEtudiants) ' +
-        'values ("' + a[i][0] + '", "' + a[i][1] + '", "' +
+        'values ("' + iut[current][0] + '", "' + iut[current][1] + '", "' +
         Math.round((Math.random() + 0.3) * 30000) + '");'
     );
 }
