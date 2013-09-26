@@ -17,6 +17,7 @@ function query($query) {
 }
 
 
+/* TODO : déplacer tout ça dans la vue */
 
 /**
  *  Requête #1.
@@ -59,17 +60,17 @@ function selectAllManifestationsAfter($date) {
 
 /**
  *  Requête #4.
- *   
+ *
  *  Bah voilà, ici, on s'en branle de l'iut de Belfort, ce qu'on veut
  *  c'est afficher le nombre étudiants d'une IUT arbitraire.
  *
- *  Aussi, comme je vois le truc, dans la base on a la liste des 
- *  étudiants qui participent aux manifestations, pas la liste de TOUS 
+ *  Aussi, comme je vois le truc, dans la base on a la liste des
+ *  étudiants qui participent aux manifestations, pas la liste de TOUS
  *  les étudiants des IUTs, c'est pour ça que je fais pas un count
  *  mais que je récupère juste la colonne dans la table iut
  *
  *  @param $IUTid the primary key of the iut table we want the etudiant count of
- *  @return number of etudiants in the iut, or FALSE if $IUTid doesn't exist in the database 
+ *  @return number of etudiants in the iut, or FALSE if $IUTid doesn't exist in the database
  */
 
 function selectNbEtudiantsByIut($IUTid) {
@@ -81,11 +82,11 @@ function selectNbEtudiantsByIut($IUTid) {
 
 /**
  *  Requête #5.
- *   
+ *
  *  Même remarque que pour le 4
  *
  *  @param $IUTid the primary key of the iut table we want the etudiant list of
- *  @return 2-dimensional array containing all etudiants in the iut, or FALSE if $IUTid doesn't exist in the database 
+ *  @return 2-dimensional array containing all etudiants in the iut, or FALSE if $IUTid doesn't exist in the database
  */
 
 
