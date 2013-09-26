@@ -96,7 +96,72 @@ function selectAllEtudiantsByIut($IUTid) {
     return query($q);
 }
 
+/**
+ *  Requête #6
+ *
+ *  Liste des étudiants ayant le même age que toto
+ *
+ *  @param $totoid : Toto's noEtudiant
+ *  @return 2-dimensional array containing all etudiants that have the same age as toto
+ */
 
+function selectEtudiantBySameAgeAs($totoid) {
+    $q = 'select noEtudiant, nom, sexe from etudiant ';
+    $q .=   'where age = (select age from etudiant ';
+    $q .=       'where noEtudiant = '. $totoid .');';
+    return query($q);
+}
+
+/**
+ *  Requête #7
+ *  
+ *  Nombre d'épreuve par manifestation
+ *
+ *  @return 2 dimensional array containing all manifestations fields plus the count of associated epreuves
+ */
+
+function selectCountEpreuves() {
+    $q = 'select numMan, nomMan, count(numEpreuves) as cEpreuves';
+    $q .=   'from contenu as C ';
+    $q .=       'inner join manifestation as M on M.numMan = C.numMan';
+    $q .=   'group by numMan';
+    return query($q);
+}
+
+/**
+ *  Requête #8
+ *
+ *  Nombre d'étudiants par IUT qui ont participé a une manifestation
+ *
+ *  @return 2 dimensional array containing the number and name of all IUTs that have student who participated in epreuves and the amount thereof
+ */
+
+function selectCountEtudiantsByManifestation() {
+    $q = 'select i.noIut, nomIut, count(distinct p.noEtudiant) ';
+    $q .=   'from etudiant as e ';
+    $q .=       'inner join participe as p on e.noEtudiant = p.noEtudiant ';
+    $q .=           'inner join iut as i on e.noIut = i.noIut ';
+    $q .=   'group by i.noIut;';
+    return query($q);
+}
+
+
+/**
+ *  Requête #9
+ *
+ *  Liste des manifestations auxquelles Toto a participé
+ *
+ *  @param  $totoid ; Toto's noEtudiant
+ *  @return 2 dimensional array containing manifestations toto participated in
+ */
+
+function selectManifestationByTotosParticipation($totoid) {
+    $q = 'select m.numMan, m.nomMan from participe as p';
+    $q .=   'inner join manifestation as m on p.numMan = m.numMan';
+    $q .=       'inner join etudiant as e on e.noEtudiant = p.noEtudiant';
+    $q .=   'where p.noEtudiant = '.$totoid.';';
+    return query($q);
+}
 
 
 ?>
