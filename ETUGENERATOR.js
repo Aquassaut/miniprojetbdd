@@ -4266,7 +4266,7 @@ var noms = [
 ];
 
 if ((typeof process.argv[2] === 'undefined') || (typeof process.argv[3] === 'undefined')) {
-    console.error('Usage : ' + process.argv[0] + ' ' + process.argv[1] + ' <number of names to generate> <number of IUTs>');    
+    console.error('Usage : ' + process.argv[0] + ' ' + process.argv[1] + ' <number of names to generate> <number of IUTs>');
     return 1;
 }
 var nbEtu = parseInt(process.argv[2], 10);
@@ -4277,12 +4277,12 @@ var hfnameNb = hommes.length;
 
 for (var i = 0; i < nbEtu; i += 1) {
     console.log(
-        'insert into etudiant (nom, age, sexe, noIut) values ' + 
+        'insert into etudiant (nom, age, sexe, noIut) values ' +
         '("' + (i % 2 === 0 ? femmes[(Math.random() * ffnameNb)|0] : hommes[(Math.random() * hfnameNb)|0]) +
         ' ' + noms[(Math.random() * nameNb)|0] +
         '", "' + ((Math.random() * 12)|0 + 18) +
-        '", "' + (Math.random() > 0.5 ? 'M' : 'F') + 
-        '", "' + ((i % nbIut) + 1) + 
+        '", "' + (Math.random() > 0.5 ? 'M' : 'F') +
+        '", "' + ((i % nbIut) + 1) +
         '");'
     );
 }
