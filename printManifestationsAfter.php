@@ -40,7 +40,7 @@ function printAllManifestationsAfter()
 }
 
 
-echo("<h2>Manifestations après le 12/04/99 :</h2>");
+echo("<h2>Manifestations après le 01/03/12 :</h2>");
 printAllManifestationsAfter();
 
 ?>
