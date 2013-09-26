@@ -37,7 +37,8 @@ function selectAllEpreuves() {
  */
 
 function selectAllEtudiants() {
-    $q = 'select nom, age, sexe from etudiant;';
+    $q = 'select nom, age, sexe, nomIut from etudiant as e inner join iut as
+          i on e.noIut = i.noIut;';
     return query($q);
 }
 
@@ -55,7 +56,11 @@ function selectAllEtudiants() {
  */
 
 function selectAllManifestationsAfter($date) {
-    //TODO
+    //TODO : Vérifier la date
+    $q = 'select nomMan, dateMan, nomIut from manifestation as m
+          inner join iut as i on m.noIut = i.noIut
+          where dateMan > date(\''.$date.'\');';
+    return query($q);
 }
 
 /**

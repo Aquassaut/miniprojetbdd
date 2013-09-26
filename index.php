@@ -1,55 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-<meta lang="fr" content="text/html" charset="utf-8">
+    <meta lang="fr" content="text/html" charset="utf-8">
 </head>
 
-<?php
-
-require "queries.php";
-
-/**
- *  selectAllIUT
- *
- *  @return 2-dimensional array containing all stored IUT
- */
-
-function selectAllIUT() {
-    $q = 'select * from iut;';
-    return query($q);
-}
-
-
-/**
- * printAllIUT
- *
- * Print the IUT database
- */
-
-function printAllIUT()
-{
-    $array = selectAllIUT();
-
-    ?>
-        <table border="1">
-        <tr>
-        <th>Nom de l'IUT</th>
-        <th>Adresse</th>
-        <th>Nombre de l'étudiants</th>
-        </tr>
-    <?php
-
-    foreach( $array as $activ)
-    {
-        echo("<tr>
-                <td>".$activ[1]."</td>
-                <td>".$activ[2]."</td>
-                <td>".$activ[3]."</td>
-             </tr>"
-            );
-    }
-}
-
-
-echo("<h2>IUT :</h2>");
-printAllIUT();
-
-?>
+<body>
+    <h2>Print tables</h2>
+<a href="printIUT.php">Print table IUT</a><br>
+<a href="printEtudiants.php">Print table Etudiants</a><br>
+<a href="printEpreuves.php">Print table Epreuves</a><br>
+<a href="printManifestationsAfter.php">Print all manifestations after the 04/12/1999</a>
+</body>
+</html>
