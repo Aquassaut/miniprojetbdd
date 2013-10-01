@@ -1,21 +1,7 @@
 <?php
 
 
-/**
- *  Query processing function
- *  @param $query String containing the query to send to the server
- *  @return 2-dimensional array, or simple array, depending on the query, FALSE in case of error (must be tested with === )
- */
-
-function query($query) {
-    $bdd = mysqli_connect('aquassaut.pwnz.org','proje','tbdd','projet');
-    $result = mysqli_query($bdd, $query);
-    if ($result === true || $result === false) {
-        return $result;
-    }
-    return mysqli_fetch_all($result);
-}
-
+require_once('queryUtil.php');
 
 /* TODO : déplacer tout ça dans la vue */
 
@@ -127,10 +113,10 @@ function selectEtudiantBySameAgeAs($totoid) {
  */
 
 function selectCountEpreuves() {
-    $q = 'select numMan, nomMan, count(numEpreuves) as cEpreuves';
+    $q = 'select M.numMan, nomMan, count(numEpreuve) as cEpreuves ';
     $q .=   'from contenu as C ';
-    $q .=       'inner join manifestation as M on M.numMan = C.numMan';
-    $q .=   'group by numMan';
+    $q .=       'inner join manifestation as M on M.numMan = C.numMan ';
+    $q .=   'group by M.numMan;';
     return query($q);
 }
 
@@ -162,9 +148,9 @@ function selectCountEtudiantsByManifestation() {
  */
 
 function selectManifestationByTotosParticipation($totoid) {
-    $q = 'select m.numMan, m.nomMan from participe as p';
-    $q .=   'inner join manifestation as m on p.numMan = m.numMan';
-    $q .=       'inner join etudiant as e on e.noEtudiant = p.noEtudiant';
+    $q = 'select m.numMan, m.nomMan from participe as p ';
+    $q .=   'inner join manifestation as m on p.numMan = m.numMan ';
+    $q .=       'inner join etudiant as e on e.noEtudiant = p.noEtudiant ';
     $q .=   'where p.noEtudiant = '.$totoid.';';
     return query($q);
 }

@@ -38,9 +38,24 @@ function prn($qres, $separator='<br />') {
 
 <?php
 
+# Requete 1
 #prn(selectAllEpreuves());
+# Requete 2
 #prn(selectAllEtudiants());
-prn(selectAllStudentFromIut(1));
+# Requete 3
+#prn(selectAllEtudiantsByIut(1));
+# Requete 4
+#prn(selectNbEtudiantsByIut(1));
+# Requete 5
+#prn(selectAllEtudiantsByIut(1));
+# Requete 6
+#prn(selectEtudiantBySameAgeAs(5));
+# Requete 7
+prn(selectCountEpreuves());
+# Requete 8
+prn(selectCountEtudiantsByManifestation());
+# Requete 9
+prn(selectManifestationByTotosParticipation(4));
 
 
 ?>
