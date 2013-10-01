@@ -29,7 +29,7 @@ function addToEpreuve($intitule) {
  *  @return boolean : false if failure, true otherwise
  */
 
-function deleteEtu($id) {
+function deleteEpreuve($id) {
     $q = 'delete from epreuve where numEpreuve = '.$id.';';
     $res = query($q);
     if ($res === false) {
@@ -42,7 +42,7 @@ function deleteEtu($id) {
  *  Changes an epreuve intitule in the database
  *  
  *  @param $id number : id of the epreuve to rename
- *  @param $newIntitule : the epreuve new intitule
+ *  @param $newIntitule string : the epreuve new intitule
  *  @return boolean : false if failure, true otherwise
  */
 
