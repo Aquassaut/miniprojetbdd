@@ -51,12 +51,8 @@ function printAllIUT()
     }
 }
 
-?>
 
 echo("<h2>IUT :</h2>");
-
-
-<?php
 printAllIUT();
 
 ?>
