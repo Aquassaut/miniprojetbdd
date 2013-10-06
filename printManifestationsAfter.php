@@ -86,12 +86,17 @@ function printAllManifestationsAfter($date = "01/01/1900")
 }
 
 
-echo("<h2>Manifestations après le 01/03/12 :</h2>");
-
 $date = $_GET["date"];
+$dateIsCorrect = checkSDate($date);
+
+if($dateIsCorrect)
+    echo("<h2>Manifestations après le ".$date." :</h2>");
+else
+    echo("<h2>Manifestations :</h2>");
+
 selectDate($date);
 
-if(checkSDate($date))
+if($dateIsCorrect)
     printAllManifestationsAfter($date);
 else
     printAllManifestationsAfter();

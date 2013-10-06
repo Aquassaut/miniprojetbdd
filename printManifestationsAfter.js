@@ -11,7 +11,7 @@ function checkDate()
 
     if (!validformat.test(date))
     {
-        errorDate.innerHTML = "Format de la date invalide. Elle doit être du type JJ/MM/AAAA.";
+        errorDate.innerHTML = "<b>Format de la date invalide. Elle doit être du type JJ/MM/AAAA.</b>";
         correct = false;
     }
 
@@ -25,7 +25,7 @@ function checkDate()
         if ((dayobj.getMonth()+1!=monthfield) || (dayobj.getDate() != dayfield) ||
             (dayobj.getFullYear() != yearfield))
         {
-            errorDate.innerHTML = "Date invalide.";
+            errorDate.innerHTML = "<b>Date invalide.</b>";
             correct = false;
         }
     }
