@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta lang="fr" content="text/html" charset="utf-8">
+    <script src="printManifestationsAfter.js"></script>
 </head>
 
 <body>
@@ -9,15 +10,60 @@
 
 require "queries.php";
 
+
+/**
+ * checkSDate($date)
+ *
+ * Check if the date is correct
+ * return true if date is correct, false otherwise.
+ */
+
+function checkSDate($date)
+{
+    if($date === "")
+        return false;
+
+    list($jj,$mm,$yy) = explode("/",$date);
+    if (is_numeric($yy) && is_numeric($mm) && is_numeric($jj))
+    {
+        return checkdate($mm,$jj,$yy);
+    }
+    return false;
+}
+
+
+/**
+ * selectDate()
+ *
+ * Select a date. Manifestations after this date will be shawn by
+ * printAllmanifestationsAfter()
+ */
+
+function selectDate($date)
+{
+    echo("<form id='formDate' onsubmit='return checkDate();'>");
+    ?>
+        <label for="Date ">Date :</label>
+    <?php
+        echo("<input id='date' type='text' name='date' value='".$date."' placeholder='jj/mm/aaaa' />")
+    ?>
+        <input type="submit" name="Afficher" value="Afficher" onClick="checkDate();" >
+        <span id="errorDate"></span>
+        </form><br>
+    <?php
+}
+
+
 /**
  * printAllEpreuves
  *
  * Print the "Epreuves" database
  */
 
-function printAllManifestationsAfter()
+function printAllManifestationsAfter($date = "01/01/1900")
 {
-    $array = selectAllManifestationsAfter("2012-03-01");
+    list($jj,$mm,$yy) = explode("/",$date);
+    $array = selectAllManifestationsAfter($yy."-".$mm."-".$jj);
 
     ?>
         <table border="3">
@@ -41,7 +87,14 @@ function printAllManifestationsAfter()
 
 
 echo("<h2>Manifestations après le 01/03/12 :</h2>");
-printAllManifestationsAfter();
+
+$date = $_GET["date"];
+selectDate($date);
+
+if(checkSDate($date))
+    printAllManifestationsAfter($date);
+else
+    printAllManifestationsAfter();
 
 ?>
 </body>
