@@ -74,12 +74,17 @@ function printAllManifestationsAfter($date = "01/01/1900")
         </tr>
     <?php
 
-    foreach( $array as $activ)
+    foreach( $array as $manif)
     {
         echo("<tr>
-                <td>".$activ[0]."</td>
-                <td>".$activ[1]."</td>
-                <td>".$activ[2]."</td>
+                <td>".$manif[0]."</td>"
+            );
+
+        list($yy,$mm,$jj) = explode("-",$manif[1]);
+        $dateNewFormat = $jj."/".$mm."/".$yy;
+
+        echo("  <td>".$dateNewFormat."</td>
+                <td>".$manif[2]."</td>
              </tr>"
             );
     }
