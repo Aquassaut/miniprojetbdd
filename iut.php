@@ -34,11 +34,12 @@ function printAllIUT()
                                     <th>Nom</th>
                                     <th>Adresse</th>
                                     <th>Nombre d\'étudiants</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr id="0">
-                                    <td colspan="3">
+                                    <td colspan="4">
                                         <center>
                                             <button class="ym-button ym-add" onclick="popForm(0);">Ajouter</button>
                                         </center>
@@ -52,6 +53,7 @@ function printAllIUT()
                                     <td>'.$activ[1].'</td>
                                     <td>'.$activ[2].'</td>
                                     <td>'.$activ[3].'</td>
+                                    <td><a href="#">Sup</a> <a href="#" onclick="popForm('.$activ[0].');">Mod</a></td>
                                 </tr>
 
         ');
