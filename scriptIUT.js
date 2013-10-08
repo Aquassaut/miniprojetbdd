@@ -23,7 +23,7 @@ var popForm = function(nb) {
         '   </div>' +
         '</td>' +
         '<td>' +
-        '   <a class="ym-save" />' +
+        '   <button class="ym-save" />' +
         '</td>' +
         '';
 }
