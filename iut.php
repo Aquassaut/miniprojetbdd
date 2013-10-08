@@ -53,7 +53,7 @@ function printAllIUT()
                                     <td>'.$activ[1].'</td>
                                     <td>'.$activ[2].'</td>
                                     <td>'.$activ[3].'</td>
-                                    <td><a href="#">Sup</a> <a href="#" onclick="popForm('.$activ[0].');">Mod</a></td>
+                                    <td><button class="ym-button ym-delete">Sup</button> <button class="ym-button ym-edit" onclick="popForm('.$activ[0].');">Mod</button></td>
                                 </tr>
 
         ');
