@@ -9,6 +9,6 @@
 <a href="printIUT.php">Print table IUT</a><br>
 <a href="printEtudiants.php">Print table Etudiants</a><br>
 <a href="printEpreuves.php">Print table Epreuves</a><br>
-<a href="printManifestationsAfter.php">Print all manifestations after the 01/03/12</a>
+<a href="printManifestationsAfter.php">Print all manifestations after...</a>
 </body>
 </html>
