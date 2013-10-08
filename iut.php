@@ -10,7 +10,7 @@ require_once "pageTemplate.php";
  */
 
 function selectAllIUT() {
-    $q = 'select * from iut;';
+    $q = 'select * from iut order by nomIut;';
     return query($q);
 }
 
@@ -36,17 +36,24 @@ function printAllIUT()
                                 </tr>
                             </thead>
                             <tbody>
-        ');
+                                <tr id="0">
+                                    <td colspan="3">
+                                        <center>
+                                            <button class="ym-button ym-add" onclick="popForm(0);">Ajouter</button>
+                                        </center>
+                                    </td>
+                                </tr>
+    ');
     foreach( $array as $activ)
     {
         echo('
-                                <tr>
+                                <tr id="'.$activ[0].'">
                                     <td>'.$activ[1].'</td>
                                     <td>'.$activ[2].'</td>
                                     <td>'.$activ[3].'</td>
                                 </tr>
 
-            ');
+        ');
     }
     echo ('
                             </tbody>

@@ -69,8 +69,8 @@ function pheader($pageName) {
     }
     echo('
                 </ul>
-                <form class="ym-searchform">
-                    <input class="ym-searchfield" type="search" placeholder="Rechercher...">
+                <form class="ym-searchform" action="recherche.php" method="get">
+                    <input class="ym-searchfield" name="recherche" type="search" placeholder="Rechercher...">
                     <input class="ym-searchbutton" type="submit" value="Aller">
                 </form>
             </div>
