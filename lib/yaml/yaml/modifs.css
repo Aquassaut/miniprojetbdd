@@ -1,4 +1,17 @@
 @media all {
+
+    .ym-ico-btn {
+        padding-left : 0;
+        padding-right : 0;
+        margin-left : 0;
+        margin-right : 0;
+    }
+
+    .ym-ico-btn:before {
+        margin-left : 0;
+        margin-right : 0;
+    }
+
     .ym-g18 {
         width : 18%;
     }
