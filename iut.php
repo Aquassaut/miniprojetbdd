@@ -26,6 +26,7 @@ function printAllIUT()
     $array = selectAllIUT();
 
     echo ('
+                    <script src="scriptIUT.js"></script>
                     <article class="ym-content">
                         <table class="bordertable">
                             <thead>
