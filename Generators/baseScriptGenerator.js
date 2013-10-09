@@ -927,13 +927,13 @@ function createEpreuves() {
 function createManifs() {
     var year = 2012;
     for (var i = 1; i < 37; i ++) {
-        var month = (((i / 3)|0 % 12) + 1 < 10 ? '0' : '') + (((i / 3)|0 % 12) + 1);
+        var month = ((((i / 3)|0) % 12) + 1 < 10 ? '0' : '') + ((((i / 3)|0) % 12) + 1);
         var day = (i % 3 === 0 ? '01' :
                    i % 3 === 1 ? '10' : '20');
-        var date = 'date(' + year + '-' + month + '-' + day + ')';
+        var date = 'date("' + year + '-' + month + '-' + day + '")';
         console.log(
             'insert into manifestation (noIut, nomMan, dateMan) ' +
-            'select noIut, concat(nomIut, monthname(' + date + '), ' + year + '), ' + date + ' from iut ' +
+            'select noIut, concat(nomIut, " ", monthname(' + date + '), " ", ' + year + '), ' + date + ' from iut ' +
             'order by rand() limit 1;'
         );
         if (month === '12' && day === '20') {
@@ -972,9 +972,9 @@ function createParticipe() {
         console.log(
             'update participe p, ' +
             '(' +
-            'select *, count(u.noEtudiant) as cpt ' + 
+            'select *, count(u.noEtudiant) as cpt ' +
             'from participe u ' +
-            'where u.resultat is NULL ' + 
+            'where u.resultat is NULL ' +
             'group by u.numMan, u.numEpreuve' +
             ') t ' +
             'set p.resultat = cpt ' +
@@ -988,7 +988,7 @@ function createParticipe() {
 
 function createContenu() {
     console.log(
-        'insert into contenu (numMan, numepreuve) ' + 
+        'insert into contenu (numMan, numepreuve) ' +
         'select distinct numMan, numEpreuve ' +
         'from participe;'
     );
