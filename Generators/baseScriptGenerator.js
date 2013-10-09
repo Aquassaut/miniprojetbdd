@@ -925,7 +925,7 @@ function createEpreuves() {
 }
 
 function createManifs() {
-    var year = 2012;
+    var year = 2013;
     for (var i = 1; i < 37; i ++) {
         var month = ((((i / 3)|0) % 12) + 1 < 10 ? '0' : '') + ((((i / 3)|0) % 12) + 1);
         var day = (i % 3 === 0 ? '01' :
