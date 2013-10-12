@@ -1,17 +1,17 @@
 var popForm = function(nb) {
     var lign = document.getElementById(nb);
-    lign.innerHTML = '' + 
+    lign.innerHTML = '' +
         '<td>' +
         '   <div class="ym-form ym-full">' +
-        '       <div class="ym-fbox">' + 
-        '           <input type="text" placeholder="Nom de l\'IUT">' + 
+        '       <div class="ym-fbox">' +
+        '           <input type="text" placeholder="Nom de l\'IUT">' +
         '       </div>' +
         '   </div>' +
         '</td>' +
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <input type="text" placeholder="Adresse de l\'IUT">' + 
+        '           <input type="text" placeholder="Adresse de l\'IUT">' +
         '       </div>' +
         '   </div>' +
         '</td>' +
@@ -23,7 +23,8 @@ var popForm = function(nb) {
         '   </div>' +
         '</td>' +
         '<td>' +
-        '   <button class="ym-save ym-button" />' +
+        '   <button class="ym-save ym-button ym-ico-btn"></button>' +
+        '   <button class="ym-close ym-button ym-ico-btn"></button>' +
         '</td>' +
         '';
-}
+};

@@ -55,7 +55,7 @@ function selectAllManifestationsInMonth($date) {
     $arrayDate = explode("/", $date);
     $m = $arrayDate[1];
     $y = $arrayDate[2];
-    $q = 'select nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut from manifestation as m
+    $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut from manifestation as m
           inner join iut as i on m.noIut = i.noIut
           where month(dateMan) = '.$m.' and year(dateMan) = '.$y.' order by dateMan;';
     return query($q);
@@ -83,14 +83,21 @@ function printManifestations($date) {
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr id="0">
+                                    <td colspan="4">
+                                        <center>
+                                            <button class="ym-button ym-add" onclick="popForm(0);">Ajouter</button>
+                                        </center>
+                                    </td>
+                                </tr>
     ');
     foreach($manifs as $manif) {
         echo('
                                 <tr>
-                                    <td>'.$manif[0].'</td>
                                     <td>'.$manif[1].'</td>
                                     <td>'.$manif[2].'</td>
-                                    <td><a href="#">Sup</a> <a href="#">Mod</a></td>
+                                    <td>'.$manif[3].'</td>
+                                    <td><button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$manif[0].');"></button> <button class="ym-button ym-delete ym-ico-btn"> </button></td>
                                 </tr>
         ');
     }
