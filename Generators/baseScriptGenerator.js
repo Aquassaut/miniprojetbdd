@@ -872,7 +872,7 @@ function createBase() {
             'dateMan date,\n' +
             'noIut int(5) not null,\n' +
             'primary key (numMan),\n' +
-            'foreign key (noIut) references iut(noIut)\n' +
+            'foreign key (noIut) references iut(noIut) on update cascade on delete cascade\n' +
         ');\n\n' +
         'create table etudiant (\n' +
             'noEtudiant int(5) not null auto_increment,\n' +
@@ -881,7 +881,7 @@ function createBase() {
             'sexe enum("M", "F"),\n' +
             'noIut int(5) not null,\n' +
             'primary key(noEtudiant),\n' +
-            'foreign key (noIut) references iut(noIut)\n' +
+            'foreign key (noIut) references iut(noIut) on update cascade on delete cascade\n' +
         ');\n\n' +
         'create table participe (\n' +
             'numMan int(5) not null,\n' +
@@ -889,16 +889,16 @@ function createBase() {
             'noEtudiant int(5) not null,\n' +
             'resultat int(5),\n' +
             'primary key (numMan, numEpreuve, noEtudiant),\n' +
-            'foreign key (numMan) references manifestation(numMan),\n' +
-            'foreign key (numEpreuve) references epreuve(numEpreuve),\n' +
-            'foreign key (noEtudiant) references etudiant(noEtudiant)\n' +
+            'foreign key (numMan) references manifestation(numMan) on update cascade on delete cascade,\n' +
+            'foreign key (numEpreuve) references epreuve(numEpreuve) on update cascade on delete cascade,\n' +
+            'foreign key (noEtudiant) references etudiant(noEtudiant) on update cascade on delete cascade\n' +
         ');\n\n' +
         'create table contenu (\n' +
             'numMan int(5) not null,\n' +
             'numEpreuve int(5) not null,\n' +
             'primary key (numMan, numEpreuve),\n' +
-            'foreign key (numMan) references manifestation(numMan),\n' +
-            'foreign key (numEpreuve) references epreuve(numEpreuve)\n' +
+            'foreign key (numMan) references manifestation(numMan) on update cascade on delete cascade,\n' +
+            'foreign key (numEpreuve) references epreuve(numEpreuve) on update cascade on delete cascade\n' +
         ');\n'
     );
 }

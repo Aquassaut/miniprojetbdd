@@ -2,6 +2,7 @@
 
 require_once "queryUtil.php";
 require_once "pageTemplate.php";
+require_once "Controllers/iutControler.php";
 
 /**
  *  selectAllIUT
@@ -54,8 +55,13 @@ function printAllIUT()
                                     <td>'.$activ[2].'</td>
                                     <td>'.$activ[3].'</td>
                                     <td>
+                                        <form id="form-iut-'.$activ[0].'" method="post" action="">
+                                            <input type="hidden" name="action" value="delete">
+                                            <input type="hidden" name="id" value="'.$activ[0].'">
+                                        </form>
                                         <button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$activ[0].');"></button>
-                                        <button class="ym-button ym-delete ym-ico-btn"> </button></td>
+                                        <button type="submit" class="ym-button ym-delete ym-ico-btn" onclick="document.getElementById(\'form-iut-'.$activ[0].'\').submit();"></button>
+                                    </td>
                                 </tr>
 
         ');
@@ -66,6 +72,18 @@ function printAllIUT()
                     </article>
     ');
 }
+
+if (isset($_POST['action'])) {
+    switch($_POST['action']) {
+    case "delete" :
+        if (isset($_POST['id'])) {
+            deleteIut($_POST['id']);
+        }
+        break;
+    }
+}
+
+
 
 pheader("iut.php");
 printAllIUT();
