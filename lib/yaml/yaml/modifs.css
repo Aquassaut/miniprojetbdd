@@ -1,5 +1,17 @@
-@media all {
+@media all, screen {
+    .ym-ico-btn:before {
+        margin-left : 0;
+        margin-right : 0;
+    }
+
     .ym-g18 {
         width : 18%;
+    }
+
+    .ym-ico-btn {
+        padding-left : 0;
+        padding-right : 0;
+        margin-left : 0;
+        margin-right : 0;
     }
 }
