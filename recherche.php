@@ -3,13 +3,6 @@
 require_once "queryUtil.php";
 require_once "pageTemplate.php";
 
-function surroundingMonths($date) {
-    echo('
-                    <aside class="ym-g18 ym-gl ym-vlist">
-                        <ul>
-        ');
-}
-
 /**
  * searchInManif
  *
