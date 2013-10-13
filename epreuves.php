@@ -68,6 +68,7 @@ function printAllEpreuves()
     ');
 }
 
+
 if (isset($_POST['action'])) {
     switch($_POST['action']) {
     case "delete" :
@@ -75,9 +76,18 @@ if (isset($_POST['action'])) {
             deleteEpreuve($_POST['id']);
         }
         break;
+    case "modify" : 
+        if (isset($_POST['id']) && isset($_POST['newIntitule'])) {
+            changeEpreuveIntitule($_POST['id'], $_POST['newIntitule']);
+        }
+        break;
+    case "add" : 
+        if (isset($_POST['newIntitule'])) {
+             addToEpreuve($_POST['newIntitule']);
+        }
+        break;
     }
 }
-
 
 pheader("epreuves.php");
 printAllEpreuves();
