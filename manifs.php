@@ -42,7 +42,7 @@ function surroundingMonths($date) {
             continue;
         }
         echo ('
-                            <li><a href="?date=01/'.($m + 1).'/'.$y.'">'.$monthToString[$m].' '.$y.'</a></li>
+                            <li><a href="?date=01/'.($m + 1).'/'.$y.'&month=true">'.$monthToString[$m].' '.$y.'</a></li>
         ');
     }
     echo('
@@ -51,25 +51,77 @@ function surroundingMonths($date) {
     ');
 }
 
+
+/**
+ *  Requête #3.
+ *
+ *  Bon, ici j'ai pas les données encore je peux pas trop les tester et
+ *  j'ai la flemme d'en créer ce soir (il est tard et je veux avancer).
+ *  Dans l'idée, on a envie de vérifier la date comme des fils de putes
+ *  (surtout le 31 février parce que le prof teste toujours ça en premier)
+ *  et aussi pas avoir de souci de format parce que sinon ça va être la merde.
+ *
+ *  @param $date the date after which we want the manifestations list
+ *  @return 2-dimensional array containing all stored manifestations after $date
+ */
+
+function selectAllManifestationsAfter($date) {
+    //TODO : Vérifier la date
+    $q = 'select nomMan, dateMan, nomIut from manifestation m
+          inner join iut i on m.noIut = i.noIut
+          where dateMan > date(\''.$date.'\');';
+    return query($q);
+}
+
+
 function selectAllManifestationsInMonth($date) {
-    $arrayDate = explode("/", $date);
+    $arrayDate = explode("-", $date);
     $m = $arrayDate[1];
-    $y = $arrayDate[2];
-    $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut from manifestation as m
+    $y = $arrayDate[0];
+    $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut
+          from manifestation as m
           inner join iut as i on m.noIut = i.noIut
           where month(dateMan) = '.$m.' and year(dateMan) = '.$y.' order by dateMan;';
     return query($q);
 }
 
-function printManifestations($date) {
-    $manifs = selectAllManifestationsInMonth($date);
+/**
+ * selectDate()
+ *
+ * Select a date. Manifestations after this date will be shawn by
+ * printAllmanifestationsAfter()
+ */
+
+function selectDate($date)
+{
+    echo("<form id='formDate' onsubmit='return checkDate();'>");
+    ?>
+        <label for="Date ">Date :</label>
+    <?php
+        echo("<input id='date' type='text' name='date' value='".$date."' placeholder='jj/mm/aaaa' />")
+    ?>
+        <input type="submit" name="Afficher" value="Afficher" onClick="checkDate();" >
+        <span id="errorDate"></span>
+        </form><br>
+    <?php
+}
+
+
+function printManifestations($date, $bymonth) {
+    list($jj,$mm,$yy) = explode("/",$date);
+
+    if($bymonth)
+        $manifs = selectAllManifestationsInMonth($yy."-".$mm."-".$jj);
+    else
+        $manifs = selectAllManifestationsAfter($yy."-".$mm."-".$jj);
+
     if (count($manifs) === 0) {
         echo('
                     <article class="ym-g80 ym-gr ym-content">
                         <p>Pas de manifestation ce mois</p>
                     </article>
         ');
-        return;    
+        return;
     }
     echo('
                     <article class="ym-g80 ym-gr ym-content">
@@ -104,18 +156,26 @@ function printManifestations($date) {
     echo('
                             </tbody>
                         </table>
-                    </article>         
+                    </article>
     ');
 }
 
 pheader("manifs.php");
 date_default_timezone_set("CET");
 $date = date("d/m/Y");
+$bymonth = false;
+
 if (isset($_GET['date'])) {
     $date = $_GET['date'];
 }
+
+if (isset($_GET['month'])) {
+    $bymonth = $_GET['month'];
+}
+
 surroundingMonths($date);
-printManifestations($date);
+selectDate($date);
+printManifestations($date, $bymonth);
 pfooter();
 
 
