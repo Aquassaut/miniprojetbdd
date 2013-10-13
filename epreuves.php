@@ -26,6 +26,7 @@ function printAllEpreuves()
     $array = selectAllEpreuves();
 
     echo ('
+                    <script src="scriptEpreuves.js"></script>
                     <article class="ym-content">
                         <table class="bordertable">
                             <thead>
@@ -38,7 +39,7 @@ function printAllEpreuves()
                                 <tr id="0">
                                     <td colspan="2">
                                         <center>
-                                            <button class="ym-button ym-add">Ajouter</button>
+                                            <button class="ym-button ym-add" onclick="popForm(0);">Ajouter</button>
                                         </center>
                                     </td>
                                 </tr>
@@ -49,7 +50,7 @@ function printAllEpreuves()
                                 <tr id="'.$activ[0].'">
                                     <td>'.$activ[1].'</td>
                                     <td>
-                                        <button class="ym-button ym-edit ym-ico-btn"></button>
+                                        <button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$activ[0].');"></button>
                                         <button class="ym-button ym-delete ym-ico-btn"> </button></td>
                                 </tr>
 
