@@ -2,6 +2,7 @@
 
 require_once "queryUtil.php";
 require_once "pageTemplate.php";
+require_once "Controllers/manifControler.php";
 
 function surroundingMonths($date) {
     echo('
@@ -152,8 +153,12 @@ function printManifestations($date, $bymonth) {
                                     <td>'.$manif[2].'</td>
                                     <td>'.$manif[3].'</td>
                                     <td>
+                                        <form id="form-manif-'.$manif[0].'" method="post" action="">
+                                            <input type="hidden" name="action" value="delete">
+                                            <input type="hidden" name="id" value="'.$manif[0].'">
+                                        </form>
                                         <button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$manif[0].');"></button>
-                                        <button class="ym-button ym-delete ym-ico-btn"> </button>
+                                        <button class="ym-button ym-delete ym-ico-btn" onclick="document.getElementById(\'form-manif-'.$manif[0].'\').submit();"> </button>
                                     </td>
                                 </tr>
         ');
@@ -176,6 +181,16 @@ if (isset($_GET['date'])) {
 
 if (isset($_GET['month'])) {
     $bymonth = $_GET['month'];
+}
+
+if (isset($_POST['action'])) {
+    switch($_POST['action']) {
+    case "delete" :
+        if (isset($_POST['id'])) {
+            deleteManif($_POST['id']);
+        }
+        break;
+    }
 }
 
 surroundingMonths($date);
