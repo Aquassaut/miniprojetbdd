@@ -17,8 +17,8 @@ require_once('queryUtil.php');
 
 
 function addToIut($nom, $adresse, $nbEtu) {
-    $q = 'insert into iut (nomIut, adresse, nbEtudiants';
-    $q .=   '("'.$nom.'", "'.$adresse.'" '.$nbEtu.');';
+    $q = 'insert into iut (nomIut, adresse, nbEtudiants) values ';
+    $q .=   '("'.$nom.'", "'.$adresse.'", '.$nbEtu.');';
     $res = query($q);
     if ($res === false) {
         return $res;
@@ -43,6 +43,27 @@ function deleteIut($id) {
 }
 
 /**
+ *  Changes all IUT fields in the database
+ *  
+ *  @param $id number : id of the iut to relocate
+ *  @param $newNom : the IUT new address
+ *  @param $newAdresse : the IUT new address
+ *  @param $newCount : the IUT new address
+ *  @return boolean : false if failure, true otherwise
+ */
+
+function changeIut($id, $newNom, $newAdresse, $newCount) {
+    $q = 'update iut set nomIut = "'.$newNom.'", adresse = "'.$newAdresse.'", nbEtudiants = '.$newCount.' ';
+    $q .='where noIut = '.$id.';';
+    $res = query($q);
+    if ($res === false) {
+        return $res;
+    }
+    return true;
+}
+
+
+/**
  *  Changes an IUT name in the database
  *  
  *  @param $id number : id of the iut to relocate
@@ -51,7 +72,7 @@ function deleteIut($id) {
  */
 
 function changeIutNom($id, $newNom) {
-    $q = 'update iut set nomIut = '.$newNom.' where noIut = '.$id.';';
+    $q = 'update iut set nomIut = "'.$newNom.'" where noIut = '.$id.';';
     $res = query($q);
     if ($res === false) {
         return $res;
@@ -68,7 +89,7 @@ function changeIutNom($id, $newNom) {
  */
 
 function changeIutAddresse($id, $newAdresse) {
-    $q = 'update iut set adresse = '.$newAdresse.' where noIut = '.$id.';';
+    $q = 'update iut set adresse = "'.$newAdresse.'" where noIut = '.$id.';';
     $res = query($q);
     if ($res === false) {
         return $res;
@@ -85,7 +106,7 @@ function changeIutAddresse($id, $newAdresse) {
  */
 
 function changeIutEtuCompte($id, $newCount) {
-    $q = 'update iut set nbEtudiant = '.$newCount.' where noIut = '.$id.';';
+    $q = 'update iut set nbEtudiants = '.$newCount.' where noIut = '.$id.';';
     $res = query($q);
     if ($res === false) {
         return $res;

@@ -73,11 +73,22 @@ function printAllIUT()
     ');
 }
 
+
 if (isset($_POST['action'])) {
     switch($_POST['action']) {
     case "delete" :
         if (isset($_POST['id'])) {
             deleteIut($_POST['id']);
+        }
+        break;
+    case "modify" : 
+        if (isset($_POST['id']) && isset($_POST['newNom']) && isset($_POST['newAdresse']) && isset($_POST['newCount'])) {
+            changeIut($_POST['id'], $_POST['newNom'], $_POST['newAdresse'], $_POST['newCount']);
+        }
+        break;
+    case "add" : 
+        if (isset($_POST['newNom']) && isset($_POST['newAdresse']) && isset($_POST['newCount'])) {
+            addToIut($_POST['newNom'], $_POST['newAdresse'], $_POST['newCount']);
         }
         break;
     }
