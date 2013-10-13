@@ -27,6 +27,31 @@ function surroundingMonths($date) {
 
     $arrayDate = explode("/", $date);
     $month = $arrayDate[1] - 1;
+
+   /**
+    * This part was previously known as selectDate()
+    *
+    * Select a date. Manifestations after this date will be shawn by
+    * printAllmanifestationsAfter()
+    */
+
+    echo('
+                            <form id="formDate"  onsubmit="return checkDate();">
+                                <li>
+                                    <div class="ym-form ym-full">
+                                        <div class="ym-fbox">
+                                            <label for="Date ">Manifestations après le</label>
+                                            <input id="date" type="text" name="date" value="'.$date.'" placeholder="jj/mm/aaaa" />
+                                            <button type="submit" class="ym-button ym-next ym-small" name="Afficher" onClick="checkDate();" >Afficher</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </form>
+                            <li>
+                                <span id="errorDate"></span>
+                            </li>
+    ');
+
     for ($i = 3; $i >= -3; $i -= 1) {
         $m = $month + $i;
         $y = $arrayDate[2];
@@ -86,28 +111,6 @@ function selectAllManifestationsInMonth($date) {
           where month(dateMan) = '.$m.' and year(dateMan) = '.$y.' order by dateMan;';
     return query($q);
 }
-
-/**
- * selectDate()
- *
- * Select a date. Manifestations after this date will be shawn by
- * printAllmanifestationsAfter()
- */
-
-function selectDate($date)
-{
-    echo("<form id='formDate' onsubmit='return checkDate();'>");
-    ?>
-        <label for="Date ">Afficher toutes les manifestations après le :</label>
-    <?php
-        echo("<input id='date' type='text' name='date' value='".$date."' placeholder='jj/mm/aaaa' />")
-    ?>
-        <input type="submit" name="Afficher" value="Afficher" onClick="checkDate();" >
-        <span id="errorDate"></span>
-        </form><br>
-    <?php
-}
-
 
 function printManifestations($date, $bymonth) {
     list($jj,$mm,$yy) = explode("/",$date);
@@ -194,7 +197,6 @@ if (isset($_POST['action'])) {
 }
 
 surroundingMonths($date);
-selectDate($date);
 printManifestations($date, $bymonth);
 pfooter();
 
