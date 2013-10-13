@@ -70,7 +70,7 @@ function selectAllManifestationsAfter($date) {
     $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut
           from manifestation as m
           inner join iut i on m.noIut = i.noIut
-          where dateMan > date(\''.$date.'\');';
+          where dateMan > date("'.$date.'");';
     return query($q);
 }
 
@@ -125,6 +125,7 @@ function printManifestations($date, $bymonth) {
         return;
     }
     echo('
+                    <script src="scriptManifs.js"></script>
                     <article class="ym-g80 ym-gr ym-content">
                         <table class="bordertable">
                             <thead>
@@ -146,11 +147,14 @@ function printManifestations($date, $bymonth) {
     ');
     foreach($manifs as $manif) {
         echo('
-                                <tr>
+                                <tr id="'.$manif[0].'">
                                     <td>'.$manif[1].'</td>
                                     <td>'.$manif[2].'</td>
                                     <td>'.$manif[3].'</td>
-                                    <td><button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$manif[0].');"></button> <button class="ym-button ym-delete ym-ico-btn"> </button></td>
+                                    <td>
+                                        <button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$manif[0].');"></button>
+                                        <button class="ym-button ym-delete ym-ico-btn"> </button>
+                                    </td>
                                 </tr>
         ');
     }
