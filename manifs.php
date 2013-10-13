@@ -67,7 +67,8 @@ function surroundingMonths($date) {
 
 function selectAllManifestationsAfter($date) {
     //TODO : Vérifier la date
-    $q = 'select nomMan, dateMan, nomIut from manifestation m
+    $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut
+          from manifestation as m
           inner join iut i on m.noIut = i.noIut
           where dateMan > date(\''.$date.'\');';
     return query($q);
@@ -96,7 +97,7 @@ function selectDate($date)
 {
     echo("<form id='formDate' onsubmit='return checkDate();'>");
     ?>
-        <label for="Date ">Date :</label>
+        <label for="Date ">Afficher toutes les manifestations après le :</label>
     <?php
         echo("<input id='date' type='text' name='date' value='".$date."' placeholder='jj/mm/aaaa' />")
     ?>
