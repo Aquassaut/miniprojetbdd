@@ -92,7 +92,6 @@ function surroundingMonths($date) {
  */
 
 function selectAllManifestationsAfter($date) {
-    //TODO : Vérifier la date
     $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut
           from manifestation as m
           inner join iut i on m.noIut = i.noIut
@@ -152,7 +151,7 @@ function printManifestations($date, $bymonth) {
     foreach($manifs as $manif) {
         echo('
                                 <tr id="'.$manif[0].'">
-                                    <td>'.$manif[1].'</td>
+                                    <td><a href="manifDetail.php?num='.$manif[0].'" >'.$manif[1].'</a></td>
                                     <td>'.$manif[2].'</td>
                                     <td>'.$manif[3].'</td>
                                     <td>
