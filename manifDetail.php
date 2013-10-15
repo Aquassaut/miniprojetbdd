@@ -39,8 +39,9 @@ function selectAllEpreuves($numMan) {
 
 function selectAllEtuByEpreuve($numEpr, $numMan)
 {
-    $q = 'select resultat, nom, age, sexe from participe as p
+    $q = 'select resultat, nom, age, sexe, nomIut from participe as p
           inner join etudiant etu on p.noEtudiant = etu.noEtudiant
+          inner join iut on etu.noIut = iut.noIut
           where numEpreuve='.$numEpr.'
           and numMan = '.$numMan.'
           order by resultat
@@ -85,6 +86,7 @@ function printEpreuve($epreuve, $numManif)
                                     <th>Nom</th>
                                     <th>Age</th>
                                     <th>Sexe</th>
+                                    <th>IUT</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,6 +96,7 @@ function printEpreuve($epreuve, $numManif)
     {
         echo('
                                 <tr>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -112,6 +115,7 @@ function printEpreuve($epreuve, $numManif)
                                         <td>'.$etudiant[1].'</td>
                                         <td>'.$etudiant[2].'</td>
                                         <td>'.$etudiant[3].'</td>
+                                        <td>'.$etudiant[4].'</td>
                                     </tr>
                  ');
         }
