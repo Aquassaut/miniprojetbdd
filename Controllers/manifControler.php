@@ -21,7 +21,6 @@ function addToManif($nom, $date, $noIut) {
     $q .=   '("'.$nom.'", date("'.$date.'"), '.$noIut.');';
     $res = query($q);
     if ($res === false) {
-        echo ('<h3> Erreur</h3> <p>'.$q.'</p>');
         return $res;
     }
     return true;
@@ -51,7 +50,6 @@ function changeManif($id, $newName, $newDate, $newIut) {
     $q .= 'where numMan = '.$id.';';
     $res = query($q);
     if ($res === false) {
-        echo ('<h3> Erreur</h3> <p>'.$q.'</p>');
         return $res;
     }
     return true;
