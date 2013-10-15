@@ -18,7 +18,7 @@ require_once('queryUtil.php');
 
 function addToManif($nom, $date, $noIut) {
     $q = 'insert into manifestation (nomMan, dateMan, noIut) values';
-    $q .=   '("'.$nom.'", date("'.$date.'"), "'.$noIut.');';
+    $q .=   '("'.$nom.'", date("'.$date.'"), '.$noIut.');';
     $res = query($q);
     if ($res === false) {
         return $res;
@@ -41,6 +41,20 @@ function deleteManif($id) {
     }
     return true;
 }
+
+
+
+function changeManif($id, $newName, $newDate, $newIut) {
+    $q = 'update manifestation ';
+    $q .= 'set nomMan = "'.$newName.'", dateMan = date("'.$newDate.'"), noIut = '.$newIut.' ';
+    $q .= 'where numMan = '.$id.';';
+    $res = query($q);
+    if ($res === false) {
+        return $res;
+    }
+    return true;
+}
+
 
 /**
  *  Changes a manifestation name in the database

@@ -95,7 +95,8 @@ function selectAllManifestationsAfter($date) {
     $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut
           from manifestation as m
           inner join iut i on m.noIut = i.noIut
-          where dateMan > date("'.$date.'");';
+          where dateMan > date("'.$date.'")
+          order by dateMan desc;';
     return query($q);
 }
 
@@ -107,7 +108,13 @@ function selectAllManifestationsInMonth($date) {
     $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut
           from manifestation as m
           inner join iut as i on m.noIut = i.noIut
-          where month(dateMan) = '.$m.' and year(dateMan) = '.$y.' order by dateMan;';
+          where month(dateMan) = '.$m.' and year(dateMan) = '.$y.'
+          order by dateMan desc;';
+    return query($q);
+}
+
+function selectIUTLabelAndId() {
+    $q = 'select noIut, nomIut from iut order by nomIut;';
     return query($q);
 }
 
@@ -169,6 +176,17 @@ function printManifestations($date, $bymonth) {
                             </tbody>
                         </table>
                     </article>
+                    <select id="iutList" style="display : none;">
+    ');
+    
+    $iuts = selectIUTLabelAndId();
+    foreach($iuts as $iut) {
+        echo ('
+                        <option value='.$iut[0].'>'.$iut[1].'</option>
+        ');
+    }
+    echo('
+                    </select>
     ');
 }
 
@@ -190,6 +208,17 @@ if (isset($_POST['action'])) {
     case "delete" :
         if (isset($_POST['id'])) {
             deleteManif($_POST['id']);
+        }
+        break;
+    case "modify" : 
+        if (isset($_POST['id']) && isset($_POST['newNom']) &&
+            isset($_POST['newDate']) && isset($_POST['noIut'])) {
+            changeManif($_POST['id'], $_POST['newNom'], $_POST['newDate'], $_POST['noIut']);
+        }
+        break;
+    case "add" : 
+        if (isset($_POST['newNom']) && isset($_POST['newDate']) && isset($_POST['noIut'])) {
+            addToManif($_POST['newNom'], $_POST['newDate'], $_POST['noIut']);
         }
         break;
     }
