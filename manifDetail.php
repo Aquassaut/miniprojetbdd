@@ -53,10 +53,11 @@ function selectAllEtuByEpreuve($numEpr, $numMan)
 function testManifestation($manifQuery)
 {
     if (count($manifQuery) === 0) {
+        pheader("Manifestation introuvable");
         echo('
-                    <article class="ym-g80 ym-gr ym-content">
-                        <p>Aucune manifestation existante pour cet identifiant</p>
-                    </article>
+                <div style="padding-top: 40px;">
+                <center><h3>Aucune manifestation existante pour cet identifiant</h3></center>
+                </div>
         ');
         return false;
     }
@@ -77,7 +78,7 @@ function printEpreuve($epreuve, $numManif)
 {
     $etudiants = selectAllEtuByEpreuve($epreuve[0], $numManif);
     echo('
-                    <center><h3>'.$epreuve[1].'</h3></center>
+                    <center><h3><a href="epreuveDetail.php?epr='.$epreuve[0].'&manif='.$numManif.'" >'.$epreuve[1].'</a></h3></center>
                     <article class="ym-content">
                         <table class="bordertable">
                             <thead>
@@ -151,10 +152,6 @@ if (isset($_GET['num']))
         pheader($manif[1]);
         printResumeManifestation($manif);
         printAllEpreuves($manif);
-    }
-    else
-    {
-        pheader("Manifestation introuvable");
     }
 }
 
