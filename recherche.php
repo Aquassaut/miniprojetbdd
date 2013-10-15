@@ -12,7 +12,6 @@ require_once "pageTemplate.php";
 
 function searchInManif($string2search)
 {
-    //TODO : Vérifier la date
     $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut
           from manifestation as m
           inner join iut i on m.noIut = i.noIut
