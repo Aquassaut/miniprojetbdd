@@ -962,28 +962,11 @@ function createEtu() {
 
 function createParticipe() {
     console.log(
-        'insert into participe (numMan, numEpreuve, noEtudiant) ' +
-        'select distinct numMan, numEpreuve, noEtudiant ' +
+        'insert into participe (numMan, numEpreuve, noEtudiant, resultat) ' +
+        'select distinct numMan, numEpreuve, noEtudiant, round(100 * rand()) ' +
         'from manifestation, epreuve, etudiant ' +
         'order by rand() limit 2000 ;'
     );
-
-    for (var i = 0; i < 40; i++) {
-        console.log(
-            'update participe p, ' +
-            '(' +
-            'select *, count(u.noEtudiant) as cpt ' +
-            'from participe u ' +
-            'where u.resultat is NULL ' +
-            'group by u.numMan, u.numEpreuve' +
-            ') t ' +
-            'set p.resultat = cpt ' +
-            'where p.resultat is NULL ' +
-            'and p.numMan = t.numMan ' +
-            'and p.numEpreuve = t.numEpreuve ' +
-            'and p.noEtudiant = t.noEtudiant;'
-        );
-    }
 }
 
 function createContenu() {
