@@ -44,7 +44,7 @@ function selectAllEtudiants($numEpr, $numMan)
           inner join iut on etu.noIut = iut.noIut
           where numEpreuve='.$numEpr.'
           and numMan = '.$numMan.'
-          order by resultat;';
+          order by resultat desc;';
     return query($q);
 }
 
