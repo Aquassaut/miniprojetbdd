@@ -7,26 +7,35 @@ var restoreFromForm = function(nb) {
 };
 var popForm = function(nb) {
     var lign = document.getElementById(nb);
+    var iut_nom = "";
+    var iut_addr = "";
+    var iut_nbEtu = "";
+    if(nb !== 0)
+    {
+        var iut_nom = document.getElementById("iut-nom-" + nb).innerHTML;
+        var iut_addr = document.getElementById("iut-addr-" + nb).innerHTML;
+        var iut_nbEtu = document.getElementById("iut-nbEtu-" + nb).innerHTML;
+    }
     prevnb[nb] = lign.innerHTML;
     lign.innerHTML = '' +
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <input id="input-iut-nom-' + nb + '" type="text" placeholder="Nom de l\'IUT">' +
+        '           <input id="input-iut-nom-' + nb + '" type="text" placeholder="Nom de l\'IUT" value="' + iut_nom + '">' +
         '       </div>' +
         '   </div>' +
         '</td>' +
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <input id="input-iut-addr-' + nb + '" type="text" placeholder="Adresse de l\'IUT">' +
+        '           <input id="input-iut-addr-' + nb + '" type="text" placeholder="Adresse de l\'IUT" value="' + iut_addr + '">' +
         '       </div>' +
         '   </div>' +
         '</td>' +
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <input id="input-iut-nbEtu-' + nb + '" type="text" placeholder="Nombre d\'étudiants">' +
+        '           <input id="input-iut-nbEtu-' + nb + '" type="text" placeholder="Nombre d\'étudiants" value="' + iut_nbEtu + '">' +
         '       </div>' +
         '   </div>' +
         '</td>' +
@@ -74,8 +83,8 @@ var modRecord = function (nb) {
     newCount.setAttribute("name", "newCount");
     newCount.setAttribute("value", document.getElementById('input-iut-nbEtu-' + nb).value);
     form.appendChild(newCount);
-    
+
     document.body.appendChild(form);
-    
+
     form.submit();
 };

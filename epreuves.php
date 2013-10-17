@@ -45,18 +45,18 @@ function printAllEpreuves()
                                     </td>
                                 </tr>
     ');
-    foreach( $array as $activ)
+    foreach( $array as $epreuve)
     {
         echo('
-                                <tr id="'.$activ[0].'">
-                                    <td><a href="manifsByEpreuve.php?num='.$activ[0].'">'.$activ[1].'</a></td>
+                                <tr id="'.$epreuve[0].'">
+                                    <td><a id="epr-nom-'.$epreuve[0].'" href="manifsByEpreuve.php?num='.$epreuve[0].'">'.$epreuve[1].'</a></td>
                                     <td>
-                                        <form id="form-epreuve-'.$activ[0].'" method="post" action="">
+                                        <form id="form-epreuve-'.$epreuve[0].'" method="post" action="">
                                             <input type="hidden" name="action" value="delete">
-                                            <input type="hidden" name="id" value="'.$activ[0].'">
+                                            <input type="hidden" name="id" value="'.$epreuve[0].'">
                                         </form>
-                                        <button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$activ[0].');"></button>
-                                        <button class="ym-button ym-delete ym-ico-btn" onclick="document.getElementById(\'form-epreuve-'.$activ[0].'\').submit();"> </button>
+                                        <button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$epreuve[0].');"></button>
+                                        <button class="ym-button ym-delete ym-ico-btn" onclick="document.getElementById(\'form-epreuve-'.$epreuve[0].'\').submit();"> </button>
                                     </td>
                                 </tr>
         ');

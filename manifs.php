@@ -152,9 +152,9 @@ function printManifestations($date, $bymonth) {
     foreach($manifs as $manif) {
         echo('
                                 <tr id="'.$manif[0].'">
-                                    <td><a href="manifDetail.php?num='.$manif[0].'" >'.$manif[1].'</a></td>
-                                    <td>'.$manif[2].'</td>
-                                    <td>'.$manif[3].'</td>
+                                    <td><a id="manif-nom-'.$manif[0].'" href="manifDetail.php?num='.$manif[0].'" >'.$manif[1].'</a></td>
+                                    <td id="manif-date-'.$manif[0].'">'.$manif[2].'</td>
+                                    <td id="manif-nomIUT-'.$manif[0].'">'.$manif[3].'</td>
                                     <td>
                                         <form id="form-manif-'.$manif[0].'" method="post" action="">
                                             <input type="hidden" name="action" value="delete">

@@ -7,26 +7,35 @@ var restoreFromForm = function(nb) {
 };
 var popForm = function(nb) {
     var lign = document.getElementById(nb);
+    var manif_nom = "";
+    var manif_date = "";
+    var manif_nomIUT = "";
+    if(nb !== 0)
+    {
+        var manif_nom = document.getElementById("manif-nom-" + nb).innerHTML;
+        var manif_date = document.getElementById("manif-date-" + nb).innerHTML;
+        var manif_nomIUT = document.getElementById("manif-nomIUT-" + nb).innerHTML;
+    }
     prevnb[nb] = lign.innerHTML;
     lign.innerHTML = '' +
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <input id="input-manif-nom-' + nb +'" type="text" placeholder="Nom de la manifestation">' +
+        '           <input id="input-manif-nom-' + nb +'" type="text" placeholder="Nom de la manifestation" value="' + manif_nom + '">' +
         '       </div>' +
         '   </div>' +
         '</td>' +
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <input id="input-manif-date-' + nb + '" type="date" placeholder="Date de la manifestation">' +
+        '           <input id="input-manif-date-' + nb + '" type="date" placeholder="Date de la manifestation" value="' + manif_date + '">' +
         '       </div>' +
         '   </div>' +
         '</td>' +
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <select id="iut-fk-' + nb + '">' +
+        '           <select id="iut-fk-' + nb + '" value="' + manif_nomIUT + '">' +
         '           </select>' +
         '       </div>' +
         '   </div>' +
@@ -76,8 +85,8 @@ var modRecord = function (nb) {
     newCount.setAttribute("name", "noIut");
     newCount.setAttribute("value", document.getElementById('iut-fk-' + nb).value);
     form.appendChild(newCount);
-    
+
     document.body.appendChild(form);
-    
+
     form.submit();
 };

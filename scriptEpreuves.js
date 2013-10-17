@@ -7,12 +7,17 @@ var restoreFromForm = function(nb) {
 };
 var popForm = function(nb) {
     var lign = document.getElementById(nb);
+    var epr_nom = "";
+    if(nb !== 0)
+    {
+        var epr_nom = document.getElementById("epr-nom-" + nb).innerHTML;
+    }
     prevnb[nb] = lign.innerHTML;
     lign.innerHTML = '' +
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <input id="input-epreuve-intitule-' + nb + '" type="text" placeholder="Nom de l\'épreuve">' +
+        '           <input id="input-epreuve-intitule-' + nb + '" type="text" placeholder="Nom de l\'épreuve" value="' + epr_nom + '">' +
         '       </div>' +
         '   </div>' +
         '</td>' +
@@ -48,8 +53,8 @@ var modRecord = function (nb) {
     newIntitule.setAttribute("value", document.getElementById('input-epreuve-intitule-' + nb).value);
     form.appendChild(newIntitule);
 
-    
+
     document.body.appendChild(form);
-    
+
     form.submit();
 };
