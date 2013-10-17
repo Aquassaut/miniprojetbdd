@@ -51,9 +51,9 @@ function printAllIUT()
     {
         echo('
                                 <tr id="'.$iut[0].'">
-                                    <td><a href="iutDetail.php?num='.$iut[0].'" >'.$iut[1].'</a></td>
-                                    <td>'.$iut[2].'</td>
-                                    <td>'.$iut[3].'</td>
+                                    <td><a id="iut-nom-'.$iut[0].'" href="iutDetail.php?num='.$iut[0].'" >'.$iut[1].'</a></td>
+                                    <td id="iut-addr-'.$iut[0].'">'.$iut[2].'</td>
+                                    <td id="iut-nbEtu-'.$iut[0].'">'.$iut[3].'</td>
                                     <td>
                                         <form id="form-iut-'.$iut[0].'" method="post" action="">
                                             <input type="hidden" name="action" value="delete">

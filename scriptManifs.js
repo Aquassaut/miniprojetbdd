@@ -5,21 +5,28 @@ var restoreFromForm = function(nb) {
         document.getElementById(nb).innerHTML = prevnb[nb];
     }
 };
-var popForm = function(nb) {
+var popForm = function(nb,nbIUT) {
     var lign = document.getElementById(nb);
+    var manif_nom = "";
+    var manif_date = "";
+    if(nb !== 0)
+    {
+        var manif_nom = document.getElementById("manif-nom-" + nb).innerHTML;
+        var manif_date = document.getElementById("manif-date-" + nb).innerHTML;
+    }
     prevnb[nb] = lign.innerHTML;
     lign.innerHTML = '' +
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <input id="input-manif-nom-' + nb +'" type="text" placeholder="Nom de la manifestation">' +
+        '           <input id="input-manif-nom-' + nb +'" type="text" placeholder="Nom de la manifestation" value="' + manif_nom + '">' +
         '       </div>' +
         '   </div>' +
         '</td>' +
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <input id="input-manif-date-' + nb + '" type="date" placeholder="Date de la manifestation">' +
+        '           <input id="input-manif-date-' + nb + '" type="date" placeholder="Date de la manifestation" value="' + manif_date + '">' +
         '       </div>' +
         '   </div>' +
         '</td>' +
@@ -37,6 +44,8 @@ var popForm = function(nb) {
         '</td>' +
         '';
     document.getElementById('iut-fk-' + nb).innerHTML = document.getElementById('iutList').innerHTML;
+    if(nbIUT !== 0)
+        document.getElementById('iut-fk-' + nb).value = nbIUT;
 };
 
 var modRecord = function (nb) {
@@ -76,8 +85,8 @@ var modRecord = function (nb) {
     newCount.setAttribute("name", "noIut");
     newCount.setAttribute("value", document.getElementById('iut-fk-' + nb).value);
     form.appendChild(newCount);
-    
+
     document.body.appendChild(form);
-    
+
     form.submit();
 };

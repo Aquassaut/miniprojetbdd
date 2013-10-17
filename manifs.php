@@ -86,7 +86,7 @@ function surroundingMonths($date) {
  */
 
 function selectAllManifestationsAfter($date) {
-    $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut
+    $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut, m.noIUT
           from manifestation as m
           inner join iut i on m.noIut = i.noIut
           where dateMan > date("'.$date.'")
@@ -99,7 +99,7 @@ function selectAllManifestationsInMonth($date) {
     $arrayDate = explode("-", $date);
     $m = $arrayDate[1];
     $y = $arrayDate[0];
-    $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut
+    $q = 'select numMan, nomMan, date_format(dateMan, "%d/%m/%Y"), nomIut, m.noIut
           from manifestation as m
           inner join iut as i on m.noIut = i.noIut
           where month(dateMan) = '.$m.' and year(dateMan) = '.$y.'
@@ -126,7 +126,6 @@ function printManifestations($date, $bymonth) {
                         <p>Pas de manifestation ce mois</p>
                     </article>
         ');
-        return;
     }
     echo('
                     <script src="scriptManifs.js"></script>
@@ -144,7 +143,7 @@ function printManifestations($date, $bymonth) {
                                 <tr id="0">
                                     <td colspan="4">
                                         <center>
-                                            <button class="ym-button ym-add" onclick="popForm(0);">Ajouter</button>
+                                            <button class="ym-button ym-add" onclick="popForm(0,0);">Ajouter</button>
                                         </center>
                                     </td>
                                 </tr>
@@ -152,15 +151,15 @@ function printManifestations($date, $bymonth) {
     foreach($manifs as $manif) {
         echo('
                                 <tr id="'.$manif[0].'">
-                                    <td><a href="manifDetail.php?num='.$manif[0].'" >'.$manif[1].'</a></td>
-                                    <td>'.$manif[2].'</td>
-                                    <td>'.$manif[3].'</td>
+                                    <td><a id="manif-nom-'.$manif[0].'" href="manifDetail.php?num='.$manif[0].'" >'.$manif[1].'</a></td>
+                                    <td id="manif-date-'.$manif[0].'">'.$manif[2].'</td>
+                                    <td id="manif-nomIUT-'.$manif[0].'">'.$manif[3].'</td>
                                     <td>
                                         <form id="form-manif-'.$manif[0].'" method="post" action="">
                                             <input type="hidden" name="action" value="delete">
                                             <input type="hidden" name="id" value="'.$manif[0].'">
                                         </form>
-                                        <button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$manif[0].');"></button>
+                                        <button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$manif[0].','.$manif[4].');"></button>
                                         <button class="ym-button ym-delete ym-ico-btn" onclick="document.getElementById(\'form-manif-'.$manif[0].'\').submit();"> </button>
                                     </td>
                                 </tr>
