@@ -44,6 +44,58 @@ function deleteEtu($id) {
 }
 
 /**
+ *  Change an etudiant in the database
+ *  
+ *  @param $id integer : id of the etudiant
+ *  @param $nom string : new name of the etudiant
+ *  @param $age integer : new age of the etudiant
+ *  @param $sexe enum ("M" or "F") : new gender of the etudiant
+ *  @param $noIut number : id of the IUT the etudiant goes to
+ *  @return boolean : false if failure, true otherwise
+ */
+
+
+function changeEtu($id, $nom, $age, $sexe, $noIut) {
+    $q = 'update etudiant set nom = "'.$nom.'", age = '.$age.', sexe = "'.$sexe.'", noIut = '.$noIut.' ';
+    $q .= 'where noEtudiant = '.$id.';';
+    $res = query($q);
+    if ($res === false) {
+        return $res;
+    }
+    return true;
+}
+
+
+/**
+ *  Change an etudiant in the database
+ *  
+ *  @param $id integer : id of the etudiant
+ *  @param $nom string : new name of the etudiant
+ *  @param $age integer : new age of the etudiant
+ *  @param $sexe enum ("M" or "F") : new gender of the etudiant
+ *  @param $noIut number : id of the IUT the etudiant goes to
+ *  @return boolean : false if failure, true otherwise
+ */
+
+
+function changeEtuNameAgeSex($id, $nom, $age, $sexe) {
+    $q = 'update etudiant set nom = "'.$nom.'", age = '.$age.', sexe = "'.$sexe.'" ';
+    $q .= 'where noEtudiant = '.$id.';';
+    $res = query($q);
+    if ($res === false) {
+        return $res;
+    }
+    return true;
+}
+/**
+ *  Changes a etudiant gender (very unlikely to be useful though) in the database
+ *  
+ *  @param $id number : id of the etudiant to operate on
+ *  @return boolean : false if failure, true otherwise
+ */
+
+
+/**
  *  Changes a etudiant gender (very unlikely to be useful though) in the database
  *  
  *  @param $id number : id of the etudiant to operate on
