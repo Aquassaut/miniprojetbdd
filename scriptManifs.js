@@ -5,7 +5,7 @@ var restoreFromForm = function(nb) {
         document.getElementById(nb).innerHTML = prevnb[nb];
     }
 };
-var popForm = function(nb) {
+var popForm = function(nb,nbIUT) {
     var lign = document.getElementById(nb);
     var manif_nom = "";
     var manif_date = "";
@@ -44,8 +44,8 @@ var popForm = function(nb) {
         '</td>' +
         '';
     document.getElementById('iut-fk-' + nb).innerHTML = document.getElementById('iutList').innerHTML;
-    if(nb !== 0)
-        document.getElementById('iut-fk-' + nb).value = nb;
+    if(nbIUT !== 0)
+        document.getElementById('iut-fk-' + nb).value = nbIUT;
 };
 
 var modRecord = function (nb) {
