@@ -38,20 +38,17 @@ var popForm = function(nb) {
     document.getElementById('input-epDet-iut-' + nb).innerHTML = document.getElementById('selectiut').innerHTML;
 };
 
-
 var filterEtu = function(nb) {
     var iutNb = parseInt(document.getElementById('input-epDet-iut-' + nb).value, 10);
     var selectetu = document.getElementById('input-epDet-etu-' + nb);
     if (iutNb === 0) {
     	selectetu.innerHTML = document.getElementById('selectetu').innerHTML;
     } else {
-	selectetu.innerHTML = "";
-	console.log("Emptying the select " + nb);
-	var selector = document.querySelectorAll('#selectetu .etu-in-' + iutNb);
-    	for (var i = 0; i < selector.length; i += 1) {
-	    console.log("Adding " + selector.item(i));
-	    selectetu.appendChild(selector.item(i));
-	}
+        selectetu.innerHTML = "";
+        var selector = document.querySelectorAll('#selectetu .etu-in-' + iutNb);
+        for (var i = 0; i < selector.length; i += 1) {
+            selectetu.appendChild(selector.item(i));
+        }
     }
 }
 
@@ -70,18 +67,38 @@ var modRecord = function (nb) {
     if (nb !== 0) {
         var id = document.createElement("input");
         id.setAttribute("type", "hidden");
-        id.setAttribute("name", "id");
+        id.setAttribute("name", "etu");
         id.setAttribute("value", nb);
         form.appendChild(id);
     }
+    // manif, epr, newEtu, newRes  
 
-    var newIntitule = document.createElement("input");
-    newIntitule.setAttribute("type", "hidden");
-    newIntitule.setAttribute("name", "newIntitule");
-    newIntitule.setAttribute("value", document.getElementById('input-epreuve-intitule-' + nb).value);
-    form.appendChild(newIntitule);
+    var manif = document.createElement("input");
+    manif.setAttribute("type", "hidden");
+    manif.setAttribute("name", "manif");
+    manif.setAttribute("value", document.getElementById("manId").innerHTML);
+    form.appendChild(manif);
 
+    var epr = document.createElement("input");
+    epr.setAttribute("type", "hidden");
+    epr.setAttribute("name", "epr");
+    epr.setAttribute("value", document.getElementById("eprId").innerHTML);
+    form.appendChild(epr);
     
+
+    var newEtu = document.createElement("input");
+    newEtu.setAttribute("type", "hidden");
+    newEtu.setAttribute("name", "newEtu");
+    newEtu.setAttribute("value", document.getElementById('input-epDet-etu-' + nb).value);
+    form.appendChild(newEtu);
+
+
+    var newRes = document.createElement("input");
+    newRes.setAttribute("type", "hidden");
+    newRes.setAttribute("name", "newRes");
+    newRes.setAttribute("value", document.getElementById('input-epDet-res-' + nb).value);
+    form.appendChild(newRes);
+
     document.body.appendChild(form);
     
     form.submit();

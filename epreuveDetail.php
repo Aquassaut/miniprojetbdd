@@ -2,6 +2,7 @@
 
 require_once "queryUtil.php";
 require_once "pageTemplate.php";
+require_once "Controllers/participeControler.php";
 
 /*
  * selectManifestations
@@ -148,16 +149,18 @@ function printEpreuve($numEpr, $numManif)
                                         <td>'.$etudiant[1].'</td>
                                         <td>'.$etudiant[2].'</td>
                                         <td>'.$etudiant[3].'</td>
-					<td>
-						<form id="form-iut-'.$etudiant[0].'" method="post" action="">
-						<input type="hidden" name="action" value="delete">
-						<input type="hidden" name="id" value="'.$etudiant[0].'">
-						</form>
-						<button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$etudiant[0].');"></button>
-						<button type="submit" class="ym-button ym-delete ym-ico-btn" onclick="document.getElementById(\'form-iut-'.$etudiant[0].'\').submit();"></button>
-					</td>
+                                        <td>
+                                            <form id="form-participe-'.$etudiant[0].'" method="post" action="">
+                                            <input type="hidden" name="action" value="delete">
+                                            <input type="hidden" name="etu" value="'.$etudiant[0].'">
+                                            <input type="hidden" name="manif" value="'.$numManif.'">
+                                            <input type="hidden" name="epr" value="'.$numEpr.'">
+                                            </form>
+                                            <button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$etudiant[0].');"></button>
+                                            <button type="submit" class="ym-button ym-delete ym-ico-btn" onclick="document.getElementById(\'form-participe-'.$etudiant[0].'\').submit();"></button>
+                                        </td>
                                     </tr>
-                 ');
+            ');
         }
     }
 
@@ -165,33 +168,55 @@ function printEpreuve($numEpr, $numManif)
                             </tbody>
                         </table>
                     </article>
-		    <span id="manId" style="display : none;">'.$numEpr.'</span>
-		    <span id="eprId" style="display : none;">'.$numManif.'</span>
-		    <select id="selectiut" style="display: none;">
-			<option value="0">Tous les IUT</option>
+                    <span id="manId" style="display : none;">'.$numManif.'</span>
+                    <span id="eprId" style="display : none;">'.$numEpr.'</span>
+                    <select id="selectiut" style="display: none;">
+                        <option value="0">Tous les IUT</option>
          ');
     $iuts = selectAllIUT();
     foreach ($iuts as $iut) {
 	echo ('
-			<option value="'.$iut[0].'">'.$iut[1].'</option>
+                        <option value="'.$iut[0].'">'.$iut[1].'</option>
 	');
     }
     echo ('
-		    </select>
-		    <select id="selectetu" style="display: none;">
+                    </select>
+                    <select id="selectetu" style="display: none;">
     ');
     $alletus = selectAllEtu();
     foreach ($alletus as $etu) {
-	echo ('
-			<option value="'.$etu[0].'" class="etu-in-'.$etu[1].'">'.$etu[2].'</option>
-	');
+        echo ('
+                        <option value="'.$etu[0].'" class="etu-in-'.$etu[1].'">'.$etu[2].'</option>
+        ');
     }
     echo ('
-	    	    </select>
+                    </select>
     ');
     
 }
 
+
+if (isset($_POST['action'])) {
+    switch($_POST['action']) {
+    case "delete" :
+        if (isset($_POST['manif']) && isset($_POST['epr']) && isset($_POST['etu'])) {
+            deleteParticipe($_POST['manif'], $_POST['epr'], $_POST['etu']);
+        }
+        break;
+    case "modify" :
+        if (isset($_POST['manif']) && isset($_POST['epr']) &&
+            isset($_POST['etu']) && isset($_POST['newEtu']) && isset($_POST['newRes'])) {
+
+            changePartResultAndEtu($_POST['manif'], $_POST['epr'], $_POST['etu'], $_POST['newEtu'], $_POST['newRes']); 
+        }
+        break;
+    case "add" :
+        if (isset($_POST['manif']) && isset($_POST['epr']) && isset($_POST['newEtu']) && $_POST['newRes']) {
+            addToParticipe($_POST['manif'], $_POST['epr'], $_POST['newEtu'], $_POST['newRes']); 
+        }
+        break;
+    }
+}
 
 if (isset($_GET['manif']) && isset($_GET['epr']))
 {
@@ -209,7 +234,6 @@ if (isset($_GET['manif']) && isset($_GET['epr']))
         printEpreuve($numEpr, $numMan);
     }
 }
-
 else
 {
     pheader("Manifestation introuvable");
