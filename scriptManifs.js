@@ -9,12 +9,10 @@ var popForm = function(nb) {
     var lign = document.getElementById(nb);
     var manif_nom = "";
     var manif_date = "";
-    var manif_nomIUT = "";
     if(nb !== 0)
     {
         var manif_nom = document.getElementById("manif-nom-" + nb).innerHTML;
         var manif_date = document.getElementById("manif-date-" + nb).innerHTML;
-        var manif_nomIUT = document.getElementById("manif-nomIUT-" + nb).innerHTML;
     }
     prevnb[nb] = lign.innerHTML;
     lign.innerHTML = '' +
@@ -35,7 +33,7 @@ var popForm = function(nb) {
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <select id="iut-fk-' + nb + '" value="' + manif_nomIUT + '">' +
+        '           <select id="iut-fk-' + nb + '">' +
         '           </select>' +
         '       </div>' +
         '   </div>' +
@@ -46,6 +44,8 @@ var popForm = function(nb) {
         '</td>' +
         '';
     document.getElementById('iut-fk-' + nb).innerHTML = document.getElementById('iutList').innerHTML;
+    if(nb !== 0)
+        document.getElementById('iut-fk-' + nb).value = nb;
 };
 
 var modRecord = function (nb) {
