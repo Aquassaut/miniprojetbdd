@@ -81,12 +81,6 @@ function surroundingMonths($date) {
 /**
  *  Requête #3.
  *
- *  Bon, ici j'ai pas les données encore je peux pas trop les tester et
- *  j'ai la flemme d'en créer ce soir (il est tard et je veux avancer).
- *  Dans l'idée, on a envie de vérifier la date comme des fils de putes
- *  (surtout le 31 février parce que le prof teste toujours ça en premier)
- *  et aussi pas avoir de souci de format parce que sinon ça va être la merde.
- *
  *  @param $date the date after which we want the manifestations list
  *  @return 2-dimensional array containing all stored manifestations after $date
  */
@@ -178,7 +172,7 @@ function printManifestations($date, $bymonth) {
                     </article>
                     <select id="iutList" style="display : none;">
     ');
-    
+
     $iuts = selectIUTLabelAndId();
     foreach($iuts as $iut) {
         echo ('
@@ -210,13 +204,13 @@ if (isset($_POST['action'])) {
             deleteManif($_POST['id']);
         }
         break;
-    case "modify" : 
+    case "modify" :
         if (isset($_POST['id']) && isset($_POST['newNom']) &&
             isset($_POST['newDate']) && isset($_POST['noIut'])) {
             changeManif($_POST['id'], $_POST['newNom'], $_POST['newDate'], $_POST['noIut']);
         }
         break;
-    case "add" : 
+    case "add" :
         if (isset($_POST['newNom']) && isset($_POST['newDate']) && isset($_POST['noIut'])) {
             addToManif($_POST['newNom'], $_POST['newDate'], $_POST['noIut']);
         }
