@@ -51,7 +51,7 @@ function printAllIUT()
     {
         echo('
                                 <tr id="'.$iut[0].'">
-                                    <td>'.$iut[1].'</td>
+                                    <td><a href="iutDetail.php?num='.$iut[0].'" >'.$iut[1].'</a></td>
                                     <td>'.$iut[2].'</td>
                                     <td>'.$iut[3].'</td>
                                     <td>
