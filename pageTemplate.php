@@ -3,7 +3,7 @@
 function pheader($pageName) {
 
     $pages = [
-        ["accueil.php", "Accueil"],
+        ["index.php", "Accueil"],
         ["manifs.php", "Les manifestations"],
         ["epreuves.php", "Les épreuves"],
         ["iut.php", "Les IUT"],

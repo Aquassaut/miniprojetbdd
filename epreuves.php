@@ -49,7 +49,7 @@ function printAllEpreuves()
     {
         echo('
                                 <tr id="'.$activ[0].'">
-                                    <td>'.$activ[1].'</td>
+                                    <td><a href="manifsByEpreuve.php?num='.$activ[0].'">'.$activ[1].'</a></td>
                                     <td>
                                         <form id="form-epreuve-'.$activ[0].'" method="post" action="">
                                             <input type="hidden" name="action" value="delete">
@@ -76,12 +76,12 @@ if (isset($_POST['action'])) {
             deleteEpreuve($_POST['id']);
         }
         break;
-    case "modify" : 
+    case "modify" :
         if (isset($_POST['id']) && isset($_POST['newIntitule'])) {
             changeEpreuveIntitule($_POST['id'], $_POST['newIntitule']);
         }
         break;
-    case "add" : 
+    case "add" :
         if (isset($_POST['newIntitule'])) {
              addToEpreuve($_POST['newIntitule']);
         }

@@ -47,20 +47,20 @@ function printAllIUT()
                                     </td>
                                 </tr>
     ');
-    foreach( $array as $activ)
+    foreach($array as $iut)
     {
         echo('
-                                <tr id="'.$activ[0].'">
-                                    <td>'.$activ[1].'</td>
-                                    <td>'.$activ[2].'</td>
-                                    <td>'.$activ[3].'</td>
+                                <tr id="'.$iut[0].'">
+                                    <td><a href="iutDetail.php?num='.$iut[0].'" >'.$iut[1].'</a></td>
+                                    <td>'.$iut[2].'</td>
+                                    <td>'.$iut[3].'</td>
                                     <td>
-                                        <form id="form-iut-'.$activ[0].'" method="post" action="">
+                                        <form id="form-iut-'.$iut[0].'" method="post" action="">
                                             <input type="hidden" name="action" value="delete">
-                                            <input type="hidden" name="id" value="'.$activ[0].'">
+                                            <input type="hidden" name="id" value="'.$iut[0].'">
                                         </form>
-                                        <button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$activ[0].');"></button>
-                                        <button type="submit" class="ym-button ym-delete ym-ico-btn" onclick="document.getElementById(\'form-iut-'.$activ[0].'\').submit();"></button>
+                                        <button class="ym-button ym-edit ym-ico-btn" onclick="popForm('.$iut[0].');"></button>
+                                        <button type="submit" class="ym-button ym-delete ym-ico-btn" onclick="document.getElementById(\'form-iut-'.$iut[0].'\').submit();"></button>
                                     </td>
                                 </tr>
 
@@ -81,12 +81,12 @@ if (isset($_POST['action'])) {
             deleteIut($_POST['id']);
         }
         break;
-    case "modify" : 
+    case "modify" :
         if (isset($_POST['id']) && isset($_POST['newNom']) && isset($_POST['newAdresse']) && isset($_POST['newCount'])) {
             changeIut($_POST['id'], $_POST['newNom'], $_POST['newAdresse'], $_POST['newCount']);
         }
         break;
-    case "add" : 
+    case "add" :
         if (isset($_POST['newNom']) && isset($_POST['newAdresse']) && isset($_POST['newCount'])) {
             addToIut($_POST['newNom'], $_POST['newAdresse'], $_POST['newCount']);
         }
