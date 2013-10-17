@@ -40,9 +40,7 @@ function testIut($iutQuery)
     if (count($iutQuery) === 0) {
         pheader("IUT introuvable");
         echo('
-                <div style="padding-top: 40px;">
-                <center><h3>Aucun IUT existant pour cet identifiant</h3></center>
-                </div>
+                <div class="box error">Aucun IUT existant pour cet identifiant</div>
         ');
         return false;
     }
@@ -54,8 +52,10 @@ function testIut($iutQuery)
 function printResumeIut($iut)
 {
     echo('
-        <h3>Adresse '.$iut[2].'<br>
-            Nombre d\'étudiants : '.$iut[3].'</h3>
+        <div class="box info">
+            Adresse '.$iut[2].'<br />
+            Nombre d\'étudiants : '.$iut[3].'
+        </div>
     ');
 }
 

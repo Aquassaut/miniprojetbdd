@@ -24,7 +24,8 @@ function selectAllManifs($numEpr)
           from manifestation as m
           inner join iut i on m.noIut = i.noIut
           inner join contenu c on m.numMan = c.numMan
-          where numEpreuve = '.$numEpr.';';
+          where numEpreuve = '.$numEpr.'
+          order by dateMan desc;';
     return query($q);
 }
 
@@ -47,9 +48,7 @@ function testEpreuve($eprQuery)
     if (count($eprQuery) === 0) {
         pheader("Épreuve introuvable");
         echo('
-                <div style="padding-top: 40px;">
-                <center><h3>Aucune épreuve existante pour cet identifiant</h3></center>
-                </div>
+                <div class="box error">Aucune épreuve existante pour cet identifiant</div>
         ');
         return false;
     }
@@ -62,9 +61,13 @@ function printManif($numEpr, $manif)
 {
     $etudiants = selectAllEtuByEpreuve($numEpr, $manif[0]);
     echo('
-                    <center><h3><a href="epreuveDetail.php?epr='.$numEpr.'&manif='.$manif[0].'" >'.$manif[1].'</a></h3>
-                    <h4><b>IUT :</b> '.$manif[3].'<br>
-                        <b>Date :</b> '.$manif[2].'</h4>
+                    <div class="center">
+                        <h3><a href="epreuveDetail.php?epr='.$numEpr.'&manif='.$manif[0].'" >'.$manif[1].'</a></h3>
+                    </div>
+                    <div class="box info">
+                        A l\'IUT de '.$manif[3].' <br />
+                        Le '.$manif[2].'
+                    </div>
                     <article class="ym-content">
                         <table class="bordertable">
                             <thead>
@@ -104,7 +107,7 @@ function printManif($numEpr, $manif)
                                         <td>'.$etudiant[3].'</td>
                                         <td>'.$etudiant[4].'</td>
                                     </tr>
-                 ');
+            ');
         }
     }
 
@@ -112,7 +115,7 @@ function printManif($numEpr, $manif)
                             </tbody>
                         </table>
                     </article>
-         ');
+    ');
 }
 
 

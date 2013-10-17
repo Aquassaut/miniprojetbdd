@@ -48,7 +48,6 @@ function selectEpreuve($numEpr) {
 
 function selectAllEtudiants($numEpr, $numMan)
 {
-    //$q = 'select resultat, nom, age, sexe, nomIut, etu.noEtudiant
     $q = 'select etu.noEtudiant, nomIut, nom, resultat
 	  from participe as p
           inner join etudiant etu on p.noEtudiant = etu.noEtudiant
@@ -65,8 +64,8 @@ function testManifestation($manifQuery)
     if (count($manifQuery) === 0) {
         pheader("Epreuve introuvable");
         echo('
-                <div style="padding-top: 40px;">
-                <center><h3>Aucune manifestation existante pour cet identifiant</h3></center>
+                <div class="box error">
+                    Aucune manifestation existante pour cet identifiant
                 </div>
         ');
         return false;
@@ -81,8 +80,8 @@ function testEpreuve($epreuves)
     if (count($epreuves) === 0) {
         pheader("Epreuve introuvable");
         echo('
-                <div style="padding-top: 40px;">
-                <center><h3>Aucune épreuve existante pour cet identifiant</h3></center>
+                <div class="box error">
+                    Aucune épreuve existante pour cet identifiant
                 </div>
         ');
         return false;
@@ -95,7 +94,9 @@ function testEpreuve($epreuves)
 function printResumeManifestation($manif)
 {
     echo('
-        <h2>À la manifestation '.$manif[1].', le '.$manif[2].' à l\'IUT de '.$manif[3].'</h2>
+        <div class="box info">
+            À la manifestation '.$manif[1].' <br />
+            Le '.$manif[2].' à l\'IUT de '.$manif[3].'</div>
     ');
 }
 

@@ -55,8 +55,8 @@ function testManifestation($manifQuery)
     if (count($manifQuery) === 0) {
         pheader("Manifestation introuvable");
         echo('
-                <div style="padding-top: 40px;">
-                <center><h3>Aucune manifestation existante pour cet identifiant</h3></center>
+                <div class="box error">
+                    Aucune manifestation existante pour cet identifiant
                 </div>
         ');
         return false;
@@ -69,7 +69,7 @@ function testManifestation($manifQuery)
 function printResumeManifestation($manif)
 {
     echo('
-        <h2>Le '.$manif[2].' à l\'IUT de '.$manif[3].'</h2>
+        <div class="box info">Le '.$manif[2].' à l\'IUT de '.$manif[3].'</div>
     ');
 }
 
@@ -78,7 +78,7 @@ function printEpreuve($epreuve, $numManif)
 {
     $etudiants = selectAllEtuByEpreuve($epreuve[0], $numManif);
     echo('
-                    <center><h3><a href="epreuveDetail.php?epr='.$epreuve[0].'&manif='.$numManif.'" >'.$epreuve[1].'</a></h3></center>
+                    <div class="center"><h3><a href="epreuveDetail.php?epr='.$epreuve[0].'&manif='.$numManif.'" >'.$epreuve[1].'</a></h3></div>
                     <article class="ym-content">
                         <table class="bordertable">
                             <thead>
