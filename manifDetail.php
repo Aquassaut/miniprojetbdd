@@ -2,6 +2,7 @@
 
 require_once "queryUtil.php";
 require_once "pageTemplate.php";
+require_once "Controllers/contenuControler.php";
 
 /*
  * selectManifestations
@@ -33,6 +34,16 @@ function selectAllEpreuves($numMan) {
           inner join epreuve e on c.numEpreuve = e.numEpreuve
           where numMan = '.$numMan.'
           order by intitule;';
+    return query($q);
+}
+
+function selectRemainingEpreuves($numMan) {
+    $q =    'select numEpreuve, intitule 
+            from epreuve
+            where numEpreuve not in (
+                select numEpreuve
+                from contenu
+                where numMan = '.$numMan.');';
     return query($q);
 }
 
@@ -73,6 +84,35 @@ function printResumeManifestation($manif)
     ');
 }
 
+function printEpreuveAdder($manif) {
+    $epreuves = selectRemainingEpreuves($manif[0]);
+    if (count($epreuves) === 0) {
+        return;
+    }
+    echo ('
+            <button id="boutEpreuve" class="ym-button ym-add" onclick="document.getElementById(\'addEpreuve\').style.display = \'block\'; document.getElementById(\'boutEpreuve\').style.display = \'none\'">Ajouter une épreuve</button>
+            <div id="addEpreuve" class="ym-form" style="display : none;">
+                <form method="POST" class="ym-fbox" action="">
+                    <input type="hidden" name="action" value="addEpreuve" />
+                    <input type="hidden" name="manif" value="'.$manif[0].'" />
+                    <label for="epreuveSelect">Quelle epreuve ajouter ?</label>
+                    <select name="epreuve" id="epreuveSelect">
+    ');
+
+    foreach ($epreuves as $epreuve) {
+        echo('
+                        <option value="'.$epreuve[0].'">'.$epreuve[1].'</option>
+        ');
+    }
+
+    echo ('
+                    </select> <br />
+                    <button type="submit" class="ym-button ym-save">Ajouter</button>
+                    <button type="button" class="ym-button ym-close" onclick="document.getElementById(\'addEpreuve\').style.display = \'none\'; document.getElementById(\'boutEpreuve\').style.display = \'block\'">Annuler</button>
+                </form>
+            </div>
+    ');
+}
 
 function printEpreuve($epreuve, $numManif)
 {
@@ -97,11 +137,17 @@ function printEpreuve($epreuve, $numManif)
     {
         echo('
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td colspan="5">
+                                        <div class="ym-form ym-full">
+                                            <form action="" method="post" class="ym-fbox center">
+                                                <input type="hidden" name="action" value="removeEpreuve" />
+                                                <input type="hidden" name="manif" value="'.$numManif.'" />
+                                                <input type="hidden" name="epreuve" value="'.$epreuve[0].'" />
+                                                <button> Supprimer cette épreuve</button>
+                                            </form>
+                                        </div>
+
+                                    </td>
                                 </tr>
              ');
     }
@@ -141,6 +187,22 @@ function printAllEpreuves($manif)
 }
 
 
+if (isset($_POST['action'])) {
+    switch ($_POST['action']) {
+    case "addEpreuve" :
+        if (isset($_POST['manif']) && isset($_POST['epreuve'])) {
+            addToContenu($_POST['epreuve'], $_POST['manif']);
+        }
+        break;
+    case "removeEpreuve" :
+        if (isset($_POST['manif']) && isset($_POST['epreuve'])) {
+            removeFromContenu($_POST['epreuve'], $_POST['manif']);
+        }
+        break;
+    }
+}
+
+
 if (isset($_GET['num']))
 {
     $numMan = $_GET['num'];
@@ -151,6 +213,7 @@ if (isset($_GET['num']))
         $manif = $manifQuery[0];
         pheader($manif[1]);
         printResumeManifestation($manif);
+        printEpreuveAdder($manif);
         printAllEpreuves($manif);
     }
 }

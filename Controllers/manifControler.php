@@ -17,7 +17,7 @@ require_once('queryUtil.php');
 
 
 function addToManif($nom, $date, $noIut) {
-    $q = 'insert into manifestation (nomMan, dateMan, noIut) values';
+    $q = 'insert into manifestation (nomMan, dateMan, noIut) values ';
     $q .=   '("'.$nom.'", date("'.$date.'"), '.$noIut.');';
     $res = query($q);
     if ($res === false) {

@@ -12,9 +12,9 @@ var popForm = function(nb) {
     var iut_nbEtu = "";
     if(nb !== 0)
     {
-        var iut_nom = document.getElementById("iut-nom-" + nb).innerHTML;
-        var iut_addr = document.getElementById("iut-addr-" + nb).innerHTML;
-        var iut_nbEtu = document.getElementById("iut-nbEtu-" + nb).innerHTML;
+        iut_nom = document.getElementById("iut-nom-" + nb).innerHTML;
+        iut_addr = document.getElementById("iut-addr-" + nb).innerHTML;
+        iut_nbEtu = document.getElementById("iut-nbEtu-" + nb).innerHTML;
     }
     prevnb[nb] = lign.innerHTML;
     lign.innerHTML = '' +
