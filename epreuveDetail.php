@@ -91,12 +91,14 @@ function testEpreuve($epreuves)
 }
 
 
-function printResumeManifestation($manif)
+function printResumeManifestation($manif, $epreuve)
 {
     echo('
         <div class="box info">
-            À la manifestation '.$manif[1].' <br />
-            Le '.$manif[2].' à l\'IUT de '.$manif[3].'</div>
+            Epreuve de <a href="manifsByEpreuve.php?num='.$epreuve[0].'">'.$epreuve[1].'</a><br />
+            À la <a href="manifDetail.php?num='.$manif[0].'">manifestation '.$manif[1].'</a> <br />
+            Le '.$manif[2].' à l\'IUT de '.$manif[3].'
+        </div>
     ');
 }
 
@@ -231,7 +233,7 @@ if (isset($_GET['manif']) && isset($_GET['epr']))
         $manif = $manifQuery[0];
         $epreuve = $epreuveQuery[0];
         pheader($epreuve[1]);
-        printResumeManifestation($manif);
+        printResumeManifestation($manif, $epreuve);
         printEpreuve($numEpr, $numMan);
     }
 }
