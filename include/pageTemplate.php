@@ -1,6 +1,10 @@
 <?php
 
 
+//UTF-8, yay
+ini_set('default_charset', 'utf-8');
+
+
 function pheader($pageName) {
 
     $pages = [
