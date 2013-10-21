@@ -12,7 +12,14 @@ function query($query) {
     if ($result === true || $result === false) {
         return $result;
     }
-    return mysqli_fetch_all($result);
+    //Mise en array a deux dimmensions
+    $array_sultat = [];
+    $compteur = 0;
+    while($row = $result->fetch_row()) {
+        $array_sultat[$compteur] = $row;
+        $compteur += 1;
+    }   
+    return $array_sultat;
 }
 
 ?>
