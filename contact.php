@@ -11,12 +11,17 @@ require_once "include/pageTemplate.php";
 function printContact() {
     echo ('
                     <article class="ym-content">
-                        <p> Pour toute questions veuillez nous envoyer un mail à l\'adresse que je ne publierai pas par peur du spam.<br />Cette page sert surtout à éviter de faire 404 le lien.</p>
+                        <h3>Auteurs</h3>
+                        <ul>
+                            <li>Jeremy Autran <i>(S3A1)</i></li>
+                            <li>Anthony Ruhier <i>(S3A1)</i></li>
+                        </ul>
+                        <p>Pour toute question ou rapport de bug, veuillez nous contacter sur nos adresses e-mail de l\'IUT (non publiées ici pour éviter tout spam).</p>
                     </article>
     ');
 }
 
-pheader("contact");
+pheader("Contact");
 printContact();
 pfooter();
 
