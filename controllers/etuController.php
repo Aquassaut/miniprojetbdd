@@ -4,7 +4,7 @@
  *  Etudiant CRUD operations interface. Requires queryUtils to fire queries.
  */
 
-require_once('queryUtil.php');
+require_once('include/queryUtil.php');
 
 /**
  *  Add a new etudiant to the database

@@ -1,19 +1,8 @@
 <?php
 
-require_once "queryUtil.php";
-require_once "pageTemplate.php";
-require_once "Controllers/iutControler.php";
-
-/**
- *  selectAllIUT
- *
- *  @return 2-dimensional array containing all stored IUT
- */
-
-function selectAllIUT() {
-    $q = 'select * from iut order by nomIut;';
-    return query($q);
-}
+require_once "include/pageTemplate.php";
+require_once "controllers/iutController.php";
+require_once "view/iutView.php";
 
 
 /**
@@ -27,7 +16,7 @@ function printAllIUT()
     $array = selectAllIUT();
 
     echo ('
-                    <script src="scriptIUT.js"></script>
+                    <script src="include/scriptIUT.js"></script>
                     <article class="ym-content">
                         <table class="bordertable">
                             <thead>

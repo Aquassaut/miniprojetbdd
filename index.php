@@ -1,7 +1,7 @@
 <?php
 
-require_once "queryUtil.php";
-require_once "pageTemplate.php";
+require_once "include/queryUtil.php";
+require_once "include/pageTemplate.php";
 
 /**
  *  printWelcome

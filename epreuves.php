@@ -1,19 +1,9 @@
 <?php
 
-require_once "queryUtil.php";
-require_once "pageTemplate.php";
-require_once "Controllers/epreuveControler.php";
+require_once "include/pageTemplate.php";
+require_once "controllers/epreuveController.php";
+require_once "view/epreuvesView.php";
 
-/**
- *  selectAllEpreuves
- *
- *  @return 2-dimensional array containing all stored epreuves
- */
-
-function selectAllEpreuves() {
-    $q = 'select * from epreuve order by intitule;';
-    return query($q);
-}
 
 
 /**
@@ -27,7 +17,7 @@ function printAllEpreuves()
     $array = selectAllEpreuves();
 
     echo ('
-                    <script src="scriptEpreuves.js"></script>
+                    <script src="include/scriptEpreuves.js"></script>
                     <article class="ym-content">
                         <table class="bordertable">
                             <thead>

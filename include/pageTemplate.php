@@ -37,7 +37,7 @@ function pheader($pageName) {
     <link rel="stylesheet" type="text/css" href="lib/yaml/yaml/screen/screen-FULLPAGE-layout.css">
     <link rel="stylesheet" type="text/css" href="lib/yaml/yaml/screen/typography.css">
     <link rel="stylesheet" type="text/css" href="lib/yaml/yaml/modifs.css">
-    <script src="utils.js"></script>
+    <script src="include/utils.js"></script>
 </head>
 <body>
 

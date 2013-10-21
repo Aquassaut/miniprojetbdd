@@ -1,38 +1,8 @@
 <?php
 
-require_once "queryUtil.php";
-require_once "pageTemplate.php";
-require_once "Controllers/etuControler.php";
-
-/*
- * selectIut
- *
- * Retourne l'IUT correspondant à l'identifiant envoyé
- * @param $noIut : identifiant de l'Iut
- * @return query($q)
- */
-
-function selectIut($noIut) {
-    $q = 'select noIut, nomIut, adresse, nbEtudiants from iut
-          where noIut = '.$noIut.';';
-    return query($q);
-}
-
-
-/*
- * selectAllEtu
- *
- * Recherche les étudiants inscrit à l'iut demandé
- * @param $numIut : identifiant de l'iut
- * @return query($q)
- */
-
-function selectAllEtu($noIut) {
-    $q = 'select noEtudiant, nom, age, sexe from etudiant
-          where noIut = '.$noIut.'
-          order by nom;';
-    return query($q);
-}
+require_once "include/queryUtil.php";
+require_once "include/pageTemplate.php";
+require_once "controllers/etuController.php";
 
 
 function testIut($iutQuery)
@@ -64,7 +34,7 @@ function printAllEtudiants($numIut)
 {
     $etudiants = selectAllEtu($numIut);
     echo('
-                    <script src="scriptIutDetail.js"></script>
+                    <script src="include/scriptIutDetail.js"></script>
                     <article class="ym-content">
                         <table class="bordertable">
                             <thead>
