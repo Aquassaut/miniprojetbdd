@@ -8,6 +8,7 @@
 
 function query($query) {
     $bdd = mysqli_connect('aquassaut.pwnz.org','proje','tbdd','projet');
+    mysqli_set_charset($bdd, "utf8");
     $result = mysqli_query($bdd, $query);
     if ($result === true || $result === false) {
         return $result;
