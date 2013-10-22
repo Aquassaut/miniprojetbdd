@@ -156,7 +156,10 @@ $date = date("d/m/Y");
 $bymonth = false;
 
 if (isset($_GET['date'])) {
-    $date = $_GET['date'];
+    $arrayDate = explode("/", $_GET['date']);
+    if (checkDate($arrayDate[1], $arrayDate[0], $arrayDate[2])) {
+        $date = $_GET['date'];
+    }
 }
 
 if (isset($_GET['month'])) {
@@ -173,12 +176,23 @@ if (isset($_POST['action'])) {
     case "modify" :
         if (isset($_POST['id']) && isset($_POST['newNom']) &&
             isset($_POST['newDate']) && isset($_POST['noIut'])) {
-            changeManif($_POST['id'], $_POST['newNom'], $_POST['newDate'], $_POST['noIut']);
+            $arrayDate = explode("/", $_POST['newDate']);
+            if (checkDate($arrayDate[1], $arrayDate[0], $arrayDate[2])) {
+                //Les dates sont gérées par mySQL comme AAAA-MM-JJ
+                $nouvelleDate = $arrayDate[2].'-'.$arrayDate[1].'-'.$arrayDate[0];
+                changeManif($_POST['id'], $_POST['newNom'], $nouvelleDate, $_POST['noIut']);
+            }
         }
         break;
     case "add" :
         if (isset($_POST['newNom']) && isset($_POST['newDate']) && isset($_POST['noIut'])) {
-            addToManif($_POST['newNom'], $_POST['newDate'], $_POST['noIut']);
+            echo('<h1>Date : '.$_POST['newDate'].'</h1>');
+            $arrayDate = explode("/", $_POST['newDate']);
+            if (checkDate($arrayDate[1], $arrayDate[0], $arrayDate[2])) {
+                //Les dates sont gérées par mySQL comme AAAA-MM-JJ
+                $nouvelleDate = $arrayDate[2].'-'.$arrayDate[1].'-'.$arrayDate[0];
+                addToManif($_POST['newNom'], $nouvelleDate, $_POST['noIut']);
+            }
         }
         break;
     }

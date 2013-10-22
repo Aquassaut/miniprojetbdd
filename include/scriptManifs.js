@@ -26,7 +26,7 @@ var popForm = function(nb,nbIUT) {
         '<td>' +
         '   <div class="ym-form ym-full">' +
         '       <div class="ym-fbox">' +
-        '           <input id="input-manif-date-' + nb + '" type="date" placeholder="Date de la manifestation" value="' + manif_date + '">' +
+        '           <input id="input-manif-date-' + nb + '" type="text" placeholder="Jour/mois/an" value="' + manif_date + '">' +
         '       </div>' +
         '   </div>' +
         '</td>' +
