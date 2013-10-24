@@ -21,7 +21,7 @@ function printWelcome() {
 
                         <h3>Configuration</h3>
 
-                        <p>Modifier le fichier <b>config.php</b> à la racine du projet pour associer le site à votre base de donnée MySQL.</p>
+                        <p>Modifier le fichier <b>config.php</b> à la racine du projet pour associer le site à votre base de données MySQL.</p>
                     </article>
     ');
 }
