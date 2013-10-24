@@ -186,7 +186,6 @@ if (isset($_POST['action'])) {
         break;
     case "add" :
         if (isset($_POST['newNom']) && isset($_POST['newDate']) && isset($_POST['noIut'])) {
-            echo('<h1>Date : '.$_POST['newDate'].'</h1>');
             $arrayDate = explode("/", $_POST['newDate']);
             if (checkDate($arrayDate[1], $arrayDate[0], $arrayDate[2])) {
                 //Les dates sont gérées par mySQL comme AAAA-MM-JJ
