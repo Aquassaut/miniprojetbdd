@@ -7,6 +7,6 @@ organisées par plusieurs IUT de France.
 
 Configuration :
 ---------------
+Utiliser le fichier model/baseScript.sql pour générer les données de test
+Modifier le fichier 'config.php' pour associer le site à la base de données mysql peuplée à l'étape ci dessus
 
-Modifier le fichier 'config.php' pour associer le site à votre base de
-données MySQL.
