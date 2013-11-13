@@ -3,6 +3,8 @@
 require_once "include/queryUtil.php";
 require_once "include/pageTemplate.php";
 require_once "controllers/etuController.php";
+require_once "view/iutDetailView.php";
+
 
 
 function testIut($iutQuery)
